@@ -2,8 +2,69 @@
   color: rgb(42, 59, 83);
   padding-left: 1rem;
   padding-top: 1rem;
-  margin-block: 1.5rem;
+  margin-block: 2.5rem;
 }
+
+/* 
 .receptionImg img {
   max-height: 300px;
+}
+.myAboutUs {
+  margin-block: 5rem;
+  margin-top: 100px;
+} */
+#about-contain {
+  padding: 20px;
+}
+
+.parag-contain {
+  max-width: 55%;
+}
+
+.myAboutUs h3 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #dddddd;
+}
+
+.myAboutUs p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #dadada;
+}
+
+.receptionImg {
+  position: absolute;
+  right: 0;
+  overflow: hidden;
+}
+
+.receptionImg img {
+  max-height: 270px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.receptionImg img.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Effetto di transizione attivato quando l'immagine entra nel viewport */
+@media (prefers-reduced-motion: no-preference) {
+  .receptionImg img {
+    animation: slideIn 1.5s ease forwards;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

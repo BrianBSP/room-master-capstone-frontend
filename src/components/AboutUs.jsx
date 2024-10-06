@@ -2,11 +2,11 @@ import { Container } from "react-bootstrap";
 
 const AboutUs = () => {
   return (
-    <Container className="mt-5 myAboutUs">
+    <Container id="about-contain" className="myAboutUs">
       <h2 className="bg-body-tertiary pb-3 rounded-3">ABOUT US</h2>
 
-      <div className="d-flex align-items-center">
-        <div className="me-4">
+      <div className="d-flex align-items-center position-relative">
+        <div className="me-4 parag-contain">
           <p className="mt-5">
             Al Room Master, offriamo un&rsquo;oasi di comfort e stile nel cuore di Cattolica. La nostra missione è farvi
             vivere un&rsquo;esperienza unica, unendo eleganza e servizio personalizzato.

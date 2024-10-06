@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 
 const Servizi = () => {
   return (
-    <Container className="myServizi">
+    <Container id="servizi-contain" className="myServizi">
       <h2 className="bg-body-tertiary pb-3 rounded-3">Servizi su Misura</h2>
       <p>
         Oltre a camere confortevoli, offriamo una gamma di servizi esclusivi pensati per soddisfare le esigenze di ogni
