@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh; /* Prende l'altezza completa della finestra */
+  height: 60vh; /* Prende l'altezza completa della finestra */
 }
 
 .carosello-img-container {

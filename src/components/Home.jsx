@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <MyNav />
 
-      <Container className="home-section">
+      <Container id="home" className="home-section">
         <h1 className="bg-body-tertiary pb-3 rounded-3">
           <span className="fs-1">Benvenuti in</span> <br />
           ROOM MASTER

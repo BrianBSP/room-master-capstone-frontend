@@ -4,3 +4,27 @@
   padding-top: 1rem;
   margin-block: 2.5rem;
 }
+
+#servizi-contain {
+  padding: 20px;
+}
+
+.servizi-par {
+  max-width: 80%;
+  text-align: center;
+  margin-inline: auto;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.servizi-list {
+  text-align: center;
+  margin-inline: auto;
+  margin-top: 3rem;
+}
+
+.servizi-list ul {
+  list-style: none;
+}

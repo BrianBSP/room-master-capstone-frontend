@@ -12,7 +12,7 @@ const MyNav = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Container className="d-flex justify-content-between">
             <div className="d-flex">
-              <Nav.Link href="/home">Home</Nav.Link>
+              <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#about-contain" className="ms-4">
                 About Us
               </Nav.Link>

@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import Servizi from "./components/Servizi";
 import Carosello from "./components/Carosello";
+import MyFooter from "./components/MyFooter";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <AboutUs />
         <Servizi />
         <Carosello />
+        <MyFooter />
         <Routes></Routes>
       </BrowserRouter>
     </>
