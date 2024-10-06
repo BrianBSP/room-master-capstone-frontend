@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../redux/actions/loginAction";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const utente = { email, password };
 
-    try {
-    } catch (error) {
-      console.error("Errore: ", error);
-      alert("Errore durante il login.");
-    }
+    dispatch(loginAction(utente));
   };
 
   return (

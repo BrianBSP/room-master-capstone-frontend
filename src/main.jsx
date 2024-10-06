@@ -10,6 +10,7 @@ import "../src/css/MyFooter.css";
 import "../src/css/Contatti.css";
 import "../src/css/Login.css";
 import { Provider } from "react-redux";
+import store from "./redux/store/index.js";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
