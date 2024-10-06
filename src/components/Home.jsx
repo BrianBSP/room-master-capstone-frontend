@@ -1,11 +1,8 @@
 import { Container } from "react-bootstrap";
-import MyNav from "./MyNav";
 
 const Home = () => {
   return (
     <>
-      <MyNav />
-
       <Container id="home" className="home-section">
         <h1 className="bg-body-tertiary pb-3 rounded-3">
           <span className="fs-1">Benvenuti in</span> <br />

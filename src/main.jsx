@@ -7,5 +7,6 @@ import "../src/css/AboutUs.css";
 import "../src/css/Servizi.css";
 import "../src/css/Carosello.css";
 import "../src/css/MyFooter.css";
+import "../src/css/Contatti.css";
 
 createRoot(document.getElementById("root")).render(<App />);
