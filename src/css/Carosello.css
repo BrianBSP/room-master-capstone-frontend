@@ -1,0 +1,18 @@
+.myCarosello {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Prende l'altezza completa della finestra */
+}
+
+.carosello-img-container {
+  display: flex;
+  justify-content: center; /* Centra l'immagine orizzontalmente */
+  align-items: center; /* Centra l'immagine verticalmente */
+  height: 100%; /* Assicura che il container prenda l'altezza dell'item del carosello */
+}
+
+.carosello-img {
+  max-width: 100%; /* Limita la larghezza dell'immagine al 100% del container */
+  height: auto; /* Mantiene il rapporto d'aspetto */
+}

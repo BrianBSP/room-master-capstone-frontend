@@ -2,30 +2,28 @@ import { Container } from "react-bootstrap";
 
 const AboutUs = () => {
   return (
-    <Container>
-      <h2>ABOUT US</h2>
-      <p>
-        Room Master è un rifugio di comfort e raffinatezza situato nel cuore di Cattolica. La nostra missione è offrire
-        un&rsquo;esperienza unica ai nostri ospiti, combinando l’eleganza senza tempo con un servizio personalizzato e
-        attento ad ogni dettaglio.
-      </p>
-      <h3>Ospitalità con Stile</h3>
-      <p>
-        Con 20 anni di esperienza nell&rsquo;ospitalità, ci impegniamo a creare un ambiente accogliente e rilassante,
-        perfetto per chi cerca una pausa dalla frenesia quotidiana o per chi è in viaggio per affari. Le nostre camere
-        sono curate in ogni minimo particolare, arredate con stile e dotate di ogni comfort moderno per garantire un
-        soggiorno indimenticabile.
-      </p>
-      <h3>La nostra missione</h3>
-      <p>
-        Il nostro impegno è rivolto a creare un’esperienza su misura per ogni ospite, garantendo che ogni dettaglio sia
-        curato con passione e professionalità.
-      </p>
-      <h3>Una Casa Lontano da Casa</h3>
-      <p>
-        Room Master non è solo un luogo dove soggiornare, è una casa lontano da casa, dove l&rsquo;accoglienza, il
-        comfort e l&rsquo;attenzione al cliente sono la nostra priorità.
-      </p>
+    <Container className="mt-5 myAboutUs">
+      <h2 className="bg-body-tertiary pb-3 rounded-3">ABOUT US</h2>
+
+      <div className="d-flex align-items-center">
+        <div className="me-4">
+          <p className="mt-5">
+            Al Room Master, offriamo un&rsquo;oasi di comfort e stile nel cuore di Cattolica. La nostra missione è farvi
+            vivere un&rsquo;esperienza unica, unendo eleganza e servizio personalizzato.
+          </p>
+          <h3>Ospitalità con Stile</h3>
+          <p>
+            Con 20 anni di esperienza, ci impegniamo a offrire un ambiente accogliente, ideale per chi cerca relax o
+            viaggia per affari. Le nostre camere, arredate con cura, sono dotate di tutti i comfort moderni per
+            garantirvi un soggiorno indimenticabile.
+          </p>
+          <h3>La nostra missione</h3>
+          <p>Dedichiamo passione e attenzione a ogni dettaglio, per far sì che ogni ospite si senta speciale.</p>
+        </div>
+        <div className="receptionImg mt-4">
+          <img src="../public/foto1.jpeg" alt="reception" />
+        </div>
+      </div>
     </Container>
   );
 };
