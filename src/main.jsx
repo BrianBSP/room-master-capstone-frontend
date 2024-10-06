@@ -8,5 +8,11 @@ import "../src/css/Servizi.css";
 import "../src/css/Carosello.css";
 import "../src/css/MyFooter.css";
 import "../src/css/Contatti.css";
+import "../src/css/Login.css";
+import { Provider } from "react-redux";
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
