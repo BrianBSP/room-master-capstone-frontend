@@ -2,17 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh; /* Prende l'altezza completa della finestra */
+  height: 60vh;
 }
 
 .carosello-img-container {
   display: flex;
-  justify-content: center; /* Centra l'immagine orizzontalmente */
-  align-items: center; /* Centra l'immagine verticalmente */
-  height: 100%; /* Assicura che il container prenda l'altezza dell'item del carosello */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .carosello-img {
-  max-width: 100%; /* Limita la larghezza dell'immagine al 100% del container */
-  height: auto; /* Mantiene il rapporto d'aspetto */
+  max-width: 100%;
+  height: auto;
 }

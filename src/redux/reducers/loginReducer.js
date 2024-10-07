@@ -1,4 +1,5 @@
 import { LOGIN_FALLITO, LOGIN_UTENTE, LOGIN_UTENTE_ERRORE } from "../actions/loginAction";
+import { LOGOUT } from "../actions/logoutAction";
 
 const initialState = {
   autenticato: false,
@@ -22,6 +23,14 @@ const loginReducer = (state = initialState, action) => {
         autenticato: false,
         accessToken: null,
         error: action.payload,
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        autenticato: false,
+        accessToken: null,
+        error: null,
       };
 
     default:

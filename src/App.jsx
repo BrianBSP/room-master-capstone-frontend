@@ -10,6 +10,7 @@ import MyFooter from "./components/MyFooter";
 import Contatti from "./components/Contatti";
 import MyNav from "./components/MyNav";
 import Login from "./components/Login";
+import Registrati from "./components/Registrati";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         />
         <Route path="/contatti" element={<Contatti />} />
         <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Registrati />} />
       </Routes>
       <MyFooter />
     </BrowserRouter>
