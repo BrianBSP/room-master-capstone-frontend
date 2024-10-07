@@ -11,7 +11,8 @@ import Contatti from "./components/Contatti";
 import MyNav from "./components/MyNav";
 import Login from "./components/Login";
 import Registrati from "./components/Registrati";
-import DashboardUtente from "./components/DashboardUtente";
+import DashUtente from "./components/DashUtente";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -30,9 +31,10 @@ function App() {
           }
         />
         <Route path="/contatti" element={<Contatti />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/register" element={<Registrati />} />
-        <Route path="/dashborad" element={<DashboardUtente />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Registrati />} />
+        <Route path="/dashboard" element={<DashUtente />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <MyFooter />
     </BrowserRouter>

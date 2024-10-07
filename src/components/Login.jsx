@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../redux/actions/loginAction";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +15,12 @@ const Login = () => {
     const utente = { email, password };
 
     dispatch(loginAction(utente));
+
+    const autenticato = localStorage.getItem("accessToken");
+
+    if (!autenticato) {
+      return <Navigate to="/login" />;
+    }
 
     window.location.href = "/dasboard";
   };
@@ -50,7 +57,7 @@ const Login = () => {
       </div>
       <div className="login-registra-section">
         <p>
-          Se non sei ancora registrato clicca <a href="/auth/register">qui</a>
+          Se non sei ancora registrato clicca <a href="/register">qui</a>
         </p>
       </div>
     </Container>

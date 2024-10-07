@@ -15,6 +15,7 @@ const Registrati = () => {
     e.preventDefault();
     const utente = { nome, cognome, email, password };
     dispatch(registraAction(utente));
+    window.location.href = "/login";
   };
 
   return (

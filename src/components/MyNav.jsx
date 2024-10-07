@@ -24,7 +24,7 @@ const MyNav = () => {
               </Nav.Link>
             </div>
             <div>
-              <Nav.Link href="/auth/login">Login</Nav.Link>
+              <Nav.Link href="/login">Login</Nav.Link>
             </div>
           </Container>
         </Navbar.Collapse>

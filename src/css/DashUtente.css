@@ -1,0 +1,22 @@
+.dash-section {
+  height: 80vh;
+  margin-top: 150px;
+}
+
+.dash-section h2 {
+  color: rgb(42, 59, 83);
+  padding-left: 1rem;
+  padding-top: 1rem;
+  margin-block: 2.5rem;
+  text-align: center;
+}
+
+.card-dash-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.card-dash-section :link {
+  color: rgb(42, 59, 83);
+}
