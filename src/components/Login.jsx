@@ -46,7 +46,7 @@ const Login = () => {
           <Button type="submit">Login</Button>
         </Form>
       </div>
-      <div className="registra-section">
+      <div className="login-registra-section">
         <p>
           Se non sei ancora registrato clicca <a href="/auth/register">qui</a>
         </p>

@@ -5,7 +5,7 @@ export const REGISTRAZIONE_UTENTE_ERRORE = "REGISTRAZIONE_UTENTE_ERRORE";
 export const registraAction = (utente) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch("http://localhost:3001", {
+      let resp = await fetch("http://localhost:3001/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -19,6 +19,7 @@ export const registraAction = (utente) => {
           type: REGISTRA_UTENTE,
           payload: response,
         });
+        alert("Registrazione effettuata con successo");
       } else {
         dispatch({
           type: REGISTRAZIONE_FALLITA,
@@ -32,6 +33,7 @@ export const registraAction = (utente) => {
         type: REGISTRAZIONE_UTENTE_ERRORE,
         payload: error.message,
       });
+      alert("Registrazione fallita");
     }
   };
 };

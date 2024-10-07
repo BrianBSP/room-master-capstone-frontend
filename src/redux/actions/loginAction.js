@@ -34,6 +34,7 @@ export const loginAction = (utente) => {
         type: LOGIN_UTENTE_ERRORE,
         payload: error.message,
       });
+      alert("Login fallito");
     }
   };
 };
