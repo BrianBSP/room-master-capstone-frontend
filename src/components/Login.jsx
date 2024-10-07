@@ -16,13 +16,12 @@ const Login = () => {
 
     dispatch(loginAction(utente));
 
-    const autenticato = localStorage.getItem("accessToken");
+    window.location.href = "/dasboard";
 
+    const autenticato = localStorage.getItem("accessToken");
     if (!autenticato) {
       return <Navigate to="/login" />;
     }
-
-    window.location.href = "/dasboard";
   };
 
   return (

@@ -2,6 +2,7 @@ import { LOGIN_FALLITO, LOGIN_UTENTE, LOGIN_UTENTE_ERRORE } from "../actions/log
 import { LOGOUT } from "../actions/logoutAction";
 
 const initialState = {
+  utente: null,
   autenticato: false,
   accessToken: null,
   error: null,
@@ -12,14 +13,16 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN_UTENTE:
       return {
         ...state,
+        utente: action.payload.utente,
         autenticato: true,
-        accessToken: action.payload,
+        accessToken: action.payload.accessToken,
         error: null,
       };
     case LOGIN_FALLITO:
     case LOGIN_UTENTE_ERRORE:
       return {
         ...state,
+        utente: null,
         autenticato: false,
         accessToken: null,
         error: action.payload,
@@ -28,6 +31,7 @@ const loginReducer = (state = initialState, action) => {
     case LOGOUT:
       return {
         ...state,
+        utente: null,
         autenticato: false,
         accessToken: null,
         error: null,

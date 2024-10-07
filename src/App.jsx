@@ -13,6 +13,7 @@ import Login from "./components/Login";
 import Registrati from "./components/Registrati";
 import DashUtente from "./components/DashUtente";
 import NotFound from "./components/NotFound";
+import ListaPreventiviUtente from "./components/ListaPreventiviUtente";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registrati />} />
         <Route path="/dashboard" element={<DashUtente />} />
+        <Route path="/preventivi" element={<ListaPreventiviUtente />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <MyFooter />

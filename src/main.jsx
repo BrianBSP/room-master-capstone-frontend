@@ -12,6 +12,7 @@ import "../src/css/Login.css";
 import "../src/css/Registrati.css";
 import "../src/css/DashUtente.css";
 import "../src/css/NotFound.css";
+import "../src/css/ListaPreventiviUtente.css";
 
 import { Provider } from "react-redux";
 import store from "./redux/store/index.js";

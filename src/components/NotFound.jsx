@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 const NotFound = () => {
   const autenticato = localStorage.getItem("accessToken");
   if (!autenticato) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/" />;
   }
   return (
     <Container className="notFound-section">
