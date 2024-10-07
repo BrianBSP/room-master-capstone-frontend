@@ -14,6 +14,8 @@ const Login = () => {
     const utente = { email, password };
 
     dispatch(loginAction(utente));
+
+    window.location.href = "/dasboard";
   };
 
   return (

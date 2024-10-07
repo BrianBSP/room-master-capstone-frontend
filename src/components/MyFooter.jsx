@@ -1,3 +1,5 @@
+import { Facebook, Instagram, Linkedin } from "react-bootstrap-icons";
+
 const MyFooter = () => {
   return (
     <div className="footer">
@@ -9,13 +11,13 @@ const MyFooter = () => {
         </div>
         <div className="footer-social">
           <a href="https://www.facebook.com" target="_blank">
-            Facebook
+            <Facebook />
           </a>
           <a href="https://www.linkedin.com" target="_blank">
-            LinkedIn
+            <Linkedin />
           </a>
           <a href="https://www.instagram.com" target="_blank">
-            Instagram
+            <Instagram />
           </a>
         </div>
       </div>
