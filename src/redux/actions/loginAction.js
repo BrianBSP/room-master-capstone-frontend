@@ -15,18 +15,22 @@ export const loginAction = (utente) => {
 
       if (resp.ok) {
         let response = await resp.json();
+        console.log(response);
+
         localStorage.setItem("accessToken", response.AccessToken);
         dispatch({
           type: LOGIN_UTENTE,
-          payload: response.AccessToken,
+          payload: response,
         });
         alert("Login effettuato con successo");
       } else {
         dispatch({
           type: LOGIN_FALLITO,
-          payload: "Login fallito",
+          payload: "accessToken non presente nella risposta.",
         });
-        throw new Error("Errore nel reperimento dei dati.");
+        alert("Login fallito: accessToken mancante.");
+
+        throw new Error("Errore nel reperimento dei dati. ");
       }
     } catch (error) {
       console.error("Errore: ", error);

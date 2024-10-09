@@ -1,26 +1,32 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { loginAction } from "../redux/actions/loginAction";
-import { Navigate } from "react-router-dom";
+import { loginAction } from "../../redux/actions/loginAction";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const handleLogin = async (e) => {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
     e.preventDefault();
 
     const utente = { email, password };
 
     dispatch(loginAction(utente));
 
-    window.location.href = "/dasboard";
+    /* window.location.href = "/dasboard"; */
 
     const autenticato = localStorage.getItem("accessToken");
+    console.log(autenticato);
+
     if (!autenticato) {
-      return <Navigate to="/login" />;
+      navigate("/login");
+    } else {
+      navigate("/dashboard");
     }
   };
 

@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { Container, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { preventiviAction } from "../redux/actions/preventiviAction";
+import { preventiviAction } from "../../redux/actions/preventiviAction";
 
 const ListaPreventiviUtente = () => {
-  const utente = useSelector((state) => state.login.utente);
   const dispatch = useDispatch();
 
   const { preventivi, loading, error } = useSelector((state) => state.preventivi);
 
   useEffect(() => {
-    dispatch(preventiviAction(utente.id));
+    dispatch(preventiviAction());
   }, [dispatch]);
 
   console.log(preventivi);
@@ -25,7 +24,7 @@ const ListaPreventiviUtente = () => {
 
         <ListGroup>
           {preventivi.map((preventivo) => (
-            <ListGroup.Item action variant="light" key={preventivo.id}>
+            <ListGroup.Item action variant="light" key={preventivo}>
               Data {preventivo.data} - € {preventivo.totalePrezzoPreventivo}
             </ListGroup.Item>
           ))}
