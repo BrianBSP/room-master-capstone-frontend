@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { registraAction } from "../redux/actions/registraAction";
+import { registraAction } from "../../redux/actions/registraAction";
 
 const Registrati = () => {
   const [nome, setNome] = useState("");

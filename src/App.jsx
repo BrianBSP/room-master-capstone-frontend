@@ -3,17 +3,17 @@ import "./App.css";
 import Home from "./components/home/Home";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import AboutUs from "./components/aboutUs/AboutUs";
-import Servizi from "./components/Servizi";
-import Carosello from "./components/carosello/Carosello";
-import MyFooter from "./components/MyFooter";
-import Contatti from "./components/contatti/Contatti";
-import MyNav from "./components/MyNav";
-import Login from "./components/login/Login";
-import Registrati from "./components/Registrati";
-import DashUtente from "./components/dashboardUtente/DashUtente";
-import NotFound from "./components/NotFound";
-import ListaPreventiviUtente from "./components/listaPreventiviUtente/ListaPreventiviUtente";
+import AboutUs from "./components/aboutUs/AboutUs.jsx";
+import Servizi from "./components/servizi/Servizi.jsx";
+import Carosello from "./components/carosello/Carosello.jsx";
+import MyFooter from "./components/footer/MyFooter.jsx";
+import Contatti from "./components/contatti/Contatti.jsx";
+import MyNav from "./components/navbar/MyNav.jsx";
+import Login from "./components/login/Login.jsx";
+import Registrati from "./components/registrati/Registrati.jsx";
+import DashUtente from "./components/dashboardUtente/DashUtente.jsx";
+import NotFound from "./components/notFound/NotFound.jsx";
+import ListaPreventiviUtente from "./components/listaPreventiviUtente/ListaPreventiviUtente.jsx";
 
 function App() {
   return (
