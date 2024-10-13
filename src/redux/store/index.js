@@ -3,12 +3,14 @@ import loginReducer from "../reducers/loginReducer";
 import registraReducer from "../reducers/registraReducer";
 import preventiviReducer from "../reducers/preventiviReducer";
 import preventivoDettaglioReducer from "../reducers/preventivoDettaglioReducer";
+import preventivoUpdateReducer from "../reducers/preventivoUpdateReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
   registra: registraReducer,
   preventivi: preventiviReducer,
   dettaglioPreventivo: preventivoDettaglioReducer,
+  updatePreventivo: preventivoUpdateReducer,
 });
 
 const store = configureStore({
