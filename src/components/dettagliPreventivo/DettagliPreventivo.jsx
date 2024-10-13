@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   accettaPreventivoAction,
   preventivoByIdAction,
   updatePreventivoAction,
 } from "../../redux/actions/preventiviAction";
 import { Button, Card, Container, Form, Modal } from "react-bootstrap";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const DettagliPreventivo = () => {
   const { preventivoId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { preventivo, loading, error } = useSelector((state) => state.dettaglioPreventivo);
   const [showModal, setShowModal] = useState(false);
@@ -47,6 +49,10 @@ const DettagliPreventivo = () => {
     dispatch(accettaPreventivoAction(preventivoId));
   };
 
+  const handleIndietro = () => {
+    navigate("/preventivi");
+  };
+
   return (
     <Container className="dettaglio-preventivo-section">
       <div>
@@ -56,6 +62,11 @@ const DettagliPreventivo = () => {
           <p>{error}</p>
         ) : (
           <div className="prev-card-section">
+            <div className="indietro-button">
+              <Button variant="secondary" onClick={handleIndietro}>
+                <ArrowLeft /> Torna Indietro
+              </Button>
+            </div>
             <Card>
               <Card.Body>
                 <Card.Title>
@@ -78,7 +89,7 @@ const DettagliPreventivo = () => {
                   </Button>
                 )}
 
-                <Button variant="primary" onClick={handleShowModal}>
+                <Button className="ms-3" variant="primary" onClick={handleShowModal}>
                   Modifica
                 </Button>
 

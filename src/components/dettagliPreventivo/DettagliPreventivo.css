@@ -14,3 +14,9 @@
 .prev-card-section {
   text-align: center;
 }
+
+.indietro-button {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 5px;
+}

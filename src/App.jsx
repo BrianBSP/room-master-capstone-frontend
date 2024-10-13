@@ -15,6 +15,8 @@ import DashUtente from "./components/dashboardUtente/DashUtente.jsx";
 import NotFound from "./components/notFound/NotFound.jsx";
 import ListaPreventiviUtente from "./components/listaPreventiviUtente/ListaPreventiviUtente.jsx";
 import DettagliPreventivo from "./components/dettagliPreventivo/DettagliPreventivo.jsx";
+import ListaPrenotazioniUtente from "./components/listaPrenotazioniUtente/ListaPrenotazioniUtente.jsx";
+import DettagliPrenotazione from "./components/dettagliPrenotazione/DettagliPrenotazione.jsx";
 
 function App() {
   return (
@@ -38,6 +40,9 @@ function App() {
         <Route path="/dashboard" element={<DashUtente />} />
         <Route path="/preventivi" element={<ListaPreventiviUtente />} />
         <Route path="/preventivi/:preventivoId" element={<DettagliPreventivo />} />
+        <Route path="/prenotazioni" element={<ListaPrenotazioniUtente />} />
+        <Route path="/prenotazioni/:prenotazioneId" element={<DettagliPrenotazione />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <MyFooter />

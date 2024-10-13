@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { accettaPreventivoAction, preventiviAction } from "../../redux/actions/preventiviAction";
 
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const ListaPreventiviUtente = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ const ListaPreventiviUtente = () => {
     navigate(`/preventivi/${preventivoId}`);
   };
 
+  const handleIndietro = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <Container className="lista-preventivi-section">
       <h2 className="bg-body-tertiary pb-3 rounded-3">I tuoi preventivi: </h2>
@@ -32,6 +37,12 @@ const ListaPreventiviUtente = () => {
         {loading && <p>Caricamento in corso...</p>}
         {error && <p>{error}</p>}
         {preventivi.length === 0 && !loading && <p>Nessun preventivo trovato.</p>}
+
+        <div className="indietro-button">
+          <Button variant="secondary" onClick={handleIndietro}>
+            <ArrowLeft /> Torna Indietro
+          </Button>
+        </div>
 
         <ListGroup>
           {preventivi.map((preventivo) => (
