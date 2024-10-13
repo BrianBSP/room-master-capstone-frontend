@@ -14,6 +14,7 @@ import Registrati from "./components/registrati/Registrati.jsx";
 import DashUtente from "./components/dashboardUtente/DashUtente.jsx";
 import NotFound from "./components/notFound/NotFound.jsx";
 import ListaPreventiviUtente from "./components/listaPreventiviUtente/ListaPreventiviUtente.jsx";
+import DettagliPreventivo from "./components/dettagliPreventivo/DettagliPreventivo.jsx";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route path="/register" element={<Registrati />} />
         <Route path="/dashboard" element={<DashUtente />} />
         <Route path="/preventivi" element={<ListaPreventiviUtente />} />
-        {/* <Route path="/preventivi/:preventivoId" element={< />} /> */}
+        <Route path="/preventivi/:preventivoId" element={<DettagliPreventivo />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <MyFooter />

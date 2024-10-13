@@ -1,0 +1,16 @@
+.dettaglio-preventivo-section {
+  height: 80vh;
+  margin-top: 150px;
+}
+
+.dettaglio-preventivo-section h2 {
+  color: rgb(42, 59, 83);
+  padding-left: 1rem;
+  padding-top: 1rem;
+  margin-block: 2.5rem;
+  text-align: center;
+}
+
+.prev-card-section {
+  text-align: center;
+}

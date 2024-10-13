@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { preventiviAction } from "../../redux/actions/preventiviAction";
-import { accettaPreventivoAction } from "../../redux/actions/accettaPreventivoAction";
+import { accettaPreventivoAction, preventiviAction } from "../../redux/actions/preventiviAction";
+
 import { useNavigate } from "react-router-dom";
 
 const ListaPreventiviUtente = () => {
