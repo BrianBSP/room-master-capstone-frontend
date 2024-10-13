@@ -36,6 +36,7 @@ function App() {
         <Route path="/register" element={<Registrati />} />
         <Route path="/dashboard" element={<DashUtente />} />
         <Route path="/preventivi" element={<ListaPreventiviUtente />} />
+        {/* <Route path="/preventivi/:preventivoId" element={< />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <MyFooter />

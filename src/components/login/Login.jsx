@@ -18,8 +18,6 @@ const Login = () => {
 
     dispatch(loginAction(utente));
 
-    /* window.location.href = "/dasboard"; */
-
     const autenticato = localStorage.getItem("accessToken");
     console.log(autenticato);
 
