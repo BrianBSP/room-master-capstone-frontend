@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { prenotazioniByIdAction } from "../../redux/actions/prenotazioniAction";
+import { eliminaPrenotazioneAction, prenotazioniByIdAction } from "../../redux/actions/prenotazioniAction";
 import { ArrowLeft } from "react-bootstrap-icons";
 
 const DettagliPrenotazione = () => {
@@ -17,6 +17,15 @@ const DettagliPrenotazione = () => {
   }, [dispatch, prenotazioneId]);
 
   const handleIndietro = () => {
+    navigate("/prenotazioni");
+  };
+
+  const handleModifica = () => {
+    navigate(`/preventivi/${prenotazione.preventivo.id}`);
+  };
+
+  const handleEliminaPrenotazione = () => {
+    dispatch(eliminaPrenotazioneAction(prenotazione.id));
     navigate("/prenotazioni");
   };
   return (
@@ -36,13 +45,21 @@ const DettagliPrenotazione = () => {
             <Card>
               <Card.Body>
                 <Card.Title>
-                  Dettagli della Prenotazione di {prenotazione.utente.nome + " " + prenotazione.utente.cognome}{" "}
+                  Dettagli della Prenotazione di{" "}
+                  {/* {prenotazione?.utente.nome + " " + prenotazione?.utente.cognome} */}{" "}
                 </Card.Title>
-                <Card.Text>
+                <Card.Text className="mt-4">
                   <p>Arrivo: {prenotazione.arrivo}</p>
                   <p>Partenza: {prenotazione.partenza}</p>
                   <p>Prezzo: € {prenotazione.totalePrezzo}</p>
                 </Card.Text>
+                <Button className="ms-3" variant="primary" onClick={handleModifica}>
+                  Modifica
+                </Button>
+                <Button className="ms-3" variant="danger" onClick={handleEliminaPrenotazione}>
+                  {/* elimina */}
+                  Cancella Prenotazione
+                </Button>
               </Card.Body>
             </Card>
           </div>

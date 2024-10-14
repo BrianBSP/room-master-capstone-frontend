@@ -22,7 +22,7 @@ const DashUtente = () => {
             <h5>Le tue prenotazioni</h5>
           </Card>
         </Link>
-        <Link className="text-decoration-none" to="/preventivi">
+        <Link className="text-decoration-none" to="/richiesta-preventivo">
           <Card className="p-3">
             <h5>Richiedi un preventivo</h5>
           </Card>

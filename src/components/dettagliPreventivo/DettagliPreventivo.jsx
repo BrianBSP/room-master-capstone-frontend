@@ -27,6 +27,17 @@ const DettagliPreventivo = () => {
     dispatch(preventivoByIdAction(preventivoId));
   }, [dispatch, preventivoId]);
 
+  useEffect(() => {
+    if (preventivo) {
+      setArrivo(preventivo.arrivo || "");
+      setPartenza(preventivo.partenza || "");
+      setTipoCamera(preventivo.tipoCamera || "");
+      setTipoServizio(preventivo.tipoServizio || "");
+      setAdulti(preventivo.numeroAdulti || "");
+      setBambini(preventivo.numeroBambini || "");
+    }
+  }, [preventivo]);
+
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
@@ -38,8 +49,8 @@ const DettagliPreventivo = () => {
         partenza: partenza,
         tipoCamera: tipoCamera,
         tipoServizio: tipoServizio,
-        adulti: adulti,
-        bambini: bambini,
+        numeroAdulti: adulti,
+        numeroBambini: bambini,
       })
     );
     setShowModal(false);
@@ -69,10 +80,8 @@ const DettagliPreventivo = () => {
             </div>
             <Card>
               <Card.Body>
-                <Card.Title>
-                  Dettagli del Preventivo di {/* {preventivo.utenteId.nome} {preventivo.utenteId.cognome} */}
-                </Card.Title>
-                <Card.Text>
+                <Card.Title>Dettagli del Preventivo</Card.Title>
+                <div className="mt-4">
                   <p>Data di richiesta: {preventivo.data}</p>
                   <p>Arrivo: {preventivo.arrivo}</p>
                   <p>Partenza: {preventivo.partenza}</p>
@@ -81,7 +90,7 @@ const DettagliPreventivo = () => {
                   <p>Numero di adulti: {preventivo.numeroAdulti}</p>
                   <p>Numero di bambini: {preventivo.numeroBambini}</p>
                   <p>Prezzo: € {preventivo.totalePrezzoPreventivo}</p>
-                </Card.Text>
+                </div>
 
                 {!preventivo.accettato && (
                   <Button variant="success" onClick={handleAccettaPreventivo}>
@@ -105,6 +114,7 @@ const DettagliPreventivo = () => {
                             placeholder="Inserisci qui la data di arrivo"
                             value={arrivo}
                             onChange={(e) => setArrivo(e.target.value)}
+                            min={new Date().toISOString().split("T")[0]}
                           />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formPartenza">
@@ -114,6 +124,7 @@ const DettagliPreventivo = () => {
                             placeholder="Inserisci qui la data di partenza"
                             value={partenza}
                             onChange={(e) => setPartenza(e.target.value)}
+                            min={arrivo}
                           />
                         </Form.Group>
                         <Form.Select
@@ -146,6 +157,7 @@ const DettagliPreventivo = () => {
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
+                          <option value="4">4</option>
                           <option value="5">5</option>
                           <option value="6">6</option>
                           <option value="7">7</option>
@@ -172,6 +184,7 @@ const DettagliPreventivo = () => {
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
+                          <option value="4">4</option>
                           <option value="5">5</option>
                           <option value="6">6</option>
                           <option value="7">7</option>
@@ -195,7 +208,7 @@ const DettagliPreventivo = () => {
                       <Button variant="secondary" onClick={handleCloseModal}>
                         Chiudi
                       </Button>
-                      <Button variant="prymary" onClick={handleUpdatePreventivo}>
+                      <Button variant="primary" onClick={handleUpdatePreventivo}>
                         Salva Modifiche
                       </Button>
                     </Modal.Footer>

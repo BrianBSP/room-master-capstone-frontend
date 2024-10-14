@@ -3,12 +3,12 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/actions/loginAction";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -28,9 +28,18 @@ const Login = () => {
     }
   };
 
+  const handleIndietro = () => {
+    navigate("/");
+  };
+
   return (
     <Container className="login-section">
       <h2 className="bg-body-tertiary pb-3 rounded-3">Effettua il LOGIN</h2>
+      <div className="indietro-button">
+        <Button variant="secondary" onClick={handleIndietro}>
+          <ArrowLeft /> Torna Indietro
+        </Button>
+      </div>
       <div className="d-flex justify-content-center">
         <Form onSubmit={handleLogin} className="form-section">
           <Form.Group className="mb-3" controlId="formBasicEmail">

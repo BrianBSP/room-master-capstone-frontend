@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { registraAction } from "../../redux/actions/registraAction";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const Registrati = () => {
   const [nome, setNome] = useState("");
@@ -10,17 +12,29 @@ const Registrati = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleRegistra = async (e) => {
     e.preventDefault();
     const utente = { nome, cognome, email, password };
     dispatch(registraAction(utente));
-    window.location.href = "/login";
+    navigate("/login");
+  };
+
+  const handleIndietro = () => {
+    navigate("/login");
   };
 
   return (
     <Container className="registra-section">
-      <h2 className="bg-body-tertiary pb-3 rounded-3">Effettua la REGISTRAZIONE</h2>
+      <div>
+        <h2 className="bg-body-tertiary pb-3 rounded-3">Effettua la REGISTRAZIONE</h2>
+      </div>
+      <div className="indietro-button">
+        <Button variant="secondary" onClick={handleIndietro}>
+          <ArrowLeft /> Torna Indietro
+        </Button>
+      </div>
       <div className="d-flex justify-content-center">
         <Form onSubmit={handleRegistra} className="form-section">
           <Form.Group className="mb-3" controlId="formBasicEmail">

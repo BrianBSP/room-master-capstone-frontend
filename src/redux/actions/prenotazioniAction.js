@@ -8,6 +8,10 @@ export const DETTAGLI_PRENOTAZIONE_RICHIESTA = "DETTAGLI_PRENOTAZIONE_RICHIESTA"
 export const DETTAGLI_PRENOTAZIONE = "DETTAGLI_PRENOTAZIONE";
 export const DETTAGLI_PRENOTAZIONE_FALLITA = "DETTAGLI_PRENOTAZIONE_FALLITA";
 
+export const ELIMINA_PRENOTAZIONE_RICHIESTA = "ELIMINA_PRENOTAZIONE_RICHIESTA";
+export const ELIMINA_PRENOTAZIONE = "ELIMINA_PRENOTAZIONE_RICHIESTA";
+export const ELIMINA_PRENOTAZIONE_FALLITA = "ELIMINA_PRENOTAZIONE_FALLITA";
+
 export const prenotazioniAction = () => {
   return async (dispatch) => {
     try {
@@ -79,6 +83,42 @@ export const prenotazioniByIdAction = (prenotazioneId) => {
     } catch (error) {
       dispatch({
         type: DETTAGLI_PRENOTAZIONE_FALLITA,
+        payload: "Errore durante la richiesta dei dati: " + error.message,
+      });
+    }
+  };
+};
+
+export const eliminaPrenotazioneAction = (prenotazioneId) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/prenotazioni/${prenotazioneId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        dispatch({
+          type: ELIMINA_PRENOTAZIONE,
+          payload: prenotazioneId,
+        });
+      } else {
+        throw new Error("Errore nella richiesta: " + resp.statusText);
+      }
+    } catch (error) {
+      dispatch({
+        type: ELIMINA_PRENOTAZIONE_FALLITA,
         payload: "Errore durante la richiesta dei dati: " + error.message,
       });
     }

@@ -17,6 +17,7 @@ import ListaPreventiviUtente from "./components/listaPreventiviUtente/ListaPreve
 import DettagliPreventivo from "./components/dettagliPreventivo/DettagliPreventivo.jsx";
 import ListaPrenotazioniUtente from "./components/listaPrenotazioniUtente/ListaPrenotazioniUtente.jsx";
 import DettagliPrenotazione from "./components/dettagliPrenotazione/DettagliPrenotazione.jsx";
+import RichiediPreventivo from "./components/richiediPreventivo/RichiediPreventivo.jsx";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/preventivi/:preventivoId" element={<DettagliPreventivo />} />
         <Route path="/prenotazioni" element={<ListaPrenotazioniUtente />} />
         <Route path="/prenotazioni/:prenotazioneId" element={<DettagliPrenotazione />} />
+        <Route path="/richiesta-preventivo" element={<RichiediPreventivo />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

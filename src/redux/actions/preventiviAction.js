@@ -16,9 +16,14 @@ export const UPDATE_PREV_RICHIESTA = "UPDATE_PREV_RICHIESTA";
 export const UPDATE_PREV = "UPDATE_PREV";
 export const UPDATE_PREV_FALLITO = "UPDATE_PREV_FALLITO";
 
+export const CREA_PREVENTIVO_RICHIESTA = "CREA_PREVENTIVO_RICHIESTA";
+export const CREA_PREVENTIVO = "CREA_PREVENTIVO";
+export const CREA_PREVENTIVO_FALLITO = "CREA_PREVENTIVO_FALLITO";
+
 export const preventiviAction = () => {
   return async (dispatch) => {
     try {
+      dispatch({ type: LISTA_PREVENTIVI_RICHIERSTA });
       const token = localStorage.getItem("accessToken");
       if (!token) {
         return dispatch({
@@ -59,6 +64,7 @@ export const preventiviAction = () => {
 export const preventivoByIdAction = (preventivoId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: DETTAGLI_PREV_RICHIESTA });
       const token = localStorage.getItem("accessToken");
       if (!token) {
         return dispatch({
@@ -94,6 +100,7 @@ export const preventivoByIdAction = (preventivoId) => {
 export const accettaPreventivoAction = (preventivoId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: ACCETTA_PREV_RICHIESTA });
       const token = localStorage.getItem("accessToken");
       if (!token) {
         return dispatch({
@@ -162,6 +169,44 @@ export const updatePreventivoAction = (preventivo) => {
     } catch (error) {
       dispatch({
         type: UPDATE_PREV_FALLITO,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const richiediPreventivoAction = (preventivo) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: CREA_PREVENTIVO_RICHIESTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+      let resp = await fetch("http://localhost:3001/preventivi", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(preventivo),
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        dispatch({
+          type: CREA_PREVENTIVO,
+          payload: response,
+        });
+      } else {
+        throw new Error("Errore nella richiesta: " + resp.statusText);
+      }
+    } catch (error) {
+      dispatch({
+        type: CREA_PREVENTIVO_FALLITO,
         payload: error.message,
       });
     }

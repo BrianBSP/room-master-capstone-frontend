@@ -14,6 +14,7 @@ import "./components/dashboardUtente/DashUtente.css";
 import "./components/notFound/NotFound.css";
 import "./components/listaPreventiviUtente/ListaPreventiviUtente.css";
 import "./components/dettagliPreventivo/DettagliPreventivo.css";
+import "./components/RichiediPreventivo/RichiediPreventivo.css";
 
 import { Provider } from "react-redux";
 import store from "./redux/store/index.js";
