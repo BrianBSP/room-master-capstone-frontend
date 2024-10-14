@@ -1,5 +1,5 @@
 .dettaglio-preventivo-section {
-  height: 80vh;
+  min-height: 80vh;
   margin-top: 150px;
 }
 

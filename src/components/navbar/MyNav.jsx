@@ -1,6 +1,9 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const MyNav = () => {
+  const login = useSelector((state) => state.login);
+  const { utente } = login;
   return (
     <Navbar expand="lg" className="myNav">
       <Container>
@@ -24,7 +27,13 @@ const MyNav = () => {
               </Nav.Link>
             </div>
             <div>
-              <Nav.Link href="/login">Login</Nav.Link>
+              {utente ? (
+                <Nav.Link href="/profilo">
+                  Ciao, {utente.nome} {utente.cognome} <img src={utente.avatar} width={25} className="rounded" />
+                </Nav.Link>
+              ) : (
+                <Nav.Link href="/login">Login</Nav.Link>
+              )}
             </div>
           </Container>
         </Navbar.Collapse>

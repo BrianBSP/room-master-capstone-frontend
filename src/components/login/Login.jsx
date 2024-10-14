@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { loginAction } from "../../redux/actions/loginAction";
+import { getUtenteAction, loginAction } from "../../redux/actions/loginAction";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "react-bootstrap-icons";
 
@@ -17,6 +17,8 @@ const Login = () => {
     const utente = { email, password };
 
     dispatch(loginAction(utente));
+
+    dispatch(getUtenteAction());
 
     const autenticato = localStorage.getItem("accessToken");
     console.log(autenticato);
