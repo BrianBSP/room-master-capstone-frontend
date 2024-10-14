@@ -10,15 +10,15 @@ const RichiediPreventivo = () => {
   const [partenza, setPartenza] = useState("");
   const [tipoCamera, setTipoCamera] = useState("");
   const [tipoServizio, setTipoServizio] = useState("");
-  const [adulti, setAdulti] = useState("");
-  const [bambini, setBambini] = useState("");
+  const [numeroAdulti, setNumeroAdulti] = useState("");
+  const [numeroBambini, setNumeroBambini] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleRichiediPreventivo = (e) => {
     e.preventDefault();
-    const preventivo = { arrivo, partenza, tipoCamera, tipoServizio, adulti, bambini };
+    const preventivo = { arrivo, partenza, tipoCamera, tipoServizio, numeroAdulti, numeroBambini };
     dispatch(richiediPreventivoAction(preventivo));
     navigate("/preventivi");
   };
@@ -83,7 +83,11 @@ const RichiediPreventivo = () => {
             <option value="BAD_BREAKFAST">Bad & Breakfast</option>
           </Form.Select>
           <p className="mt-4">Seleziona il Numero di Adulti</p>
-          <Form.Select aria-label="Seleziona Numero Adulti" value={adulti} onChange={(e) => setAdulti(e.target.value)}>
+          <Form.Select
+            aria-label="Seleziona Numero Adulti"
+            value={numeroAdulti}
+            onChange={(e) => setNumeroAdulti(parseInt(e.target.value))}
+          >
             <option>- Seleziona il numero di adulti -</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -109,8 +113,8 @@ const RichiediPreventivo = () => {
           <p className="mt-4">Seleziona il Numero di Adulti</p>
           <Form.Select
             aria-label="Seleziona Numero Bambini"
-            value={bambini}
-            onChange={(e) => setBambini(e.target.value)}
+            value={numeroBambini}
+            onChange={(e) => setNumeroBambini(parseInt(e.target.value))}
           >
             <option>- Seleziona il numero di bambini -</option>
             <option value="1">1</option>
