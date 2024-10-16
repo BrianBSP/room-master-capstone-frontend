@@ -1,9 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useSelector } from "react-redux";
 
 const MyNav = () => {
-  const login = useSelector((state) => state.login);
-  const { utente } = login;
+  const utente = JSON.parse(localStorage.getItem("utente"));
   return (
     <Navbar expand="lg" className="myNav">
       <Container>

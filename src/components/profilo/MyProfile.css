@@ -10,3 +10,8 @@
   margin-block: 2.5rem;
   text-align: center;
 }
+
+.img-contain-profilo img {
+  width: 100%;
+  border-radius: 50%;
+}
