@@ -56,8 +56,15 @@ const DettagliPreventivo = () => {
     setShowModal(false);
   };
 
-  const handleAccettaPreventivo = (preventivoId) => {
-    dispatch(accettaPreventivoAction(preventivoId));
+  const handleAccettaPreventivo = () => {
+    const oggi = new Date();
+    const dataArrivo = new Date(preventivo.arrivo);
+
+    if (dataArrivo < oggi) {
+      alert("Preventivo scaduto. Richiedine uno nuovo!");
+    } else {
+      dispatch(accettaPreventivoAction(preventivoId));
+    }
   };
 
   const handleIndietro = () => {

@@ -16,7 +16,7 @@ const ListaPreventiviUtente = () => {
     dispatch(preventiviAction());
   }, [dispatch]);
 
-  console.log(preventivi);
+  /* console.log(preventivi); */
 
   const handleAccettaPreventivo = (preventivoId) => {
     dispatch(accettaPreventivoAction(preventivoId));
