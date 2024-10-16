@@ -6,6 +6,7 @@ import preventivoDettaglioReducer from "../reducers/preventivoDettaglioReducer";
 import preventivoUpdateReducer from "../reducers/preventivoUpdateReducer";
 import prenotazioniReducer from "../reducers/prenotazioniReducer";
 import prenotazioneDettaglioReducer from "../reducers/prenotazioneDettaglioReducer";
+import uploadImageReducer from "../reducers/uploadImageReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   updatePreventivo: preventivoUpdateReducer,
   prenotazioni: prenotazioniReducer,
   dettaglioPrenotazione: prenotazioneDettaglioReducer,
+  uploadImage: uploadImageReducer,
 });
 
 const store = configureStore({

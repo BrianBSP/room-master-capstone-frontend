@@ -1,8 +1,10 @@
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Form, Modal } from "react-bootstrap";
 import { ArrowLeft, BoxArrowRight } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutAction } from "../../redux/actions/logoutAction";
+import { useState } from "react";
+import { uploadImageAction } from "../../redux/actions/uploadImageAction";
 
 const MyProfile = () => {
   const utente = JSON.parse(localStorage.getItem("utente"));
@@ -16,6 +18,27 @@ const MyProfile = () => {
   const handleLogout = () => {
     dispatch(logoutAction());
     navigate("/login");
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  const [fileSelezionato, setFileSelezionato] = useState(null);
+
+  const handleCambiaFile = (e) => {
+    setFileSelezionato(e.target.files[0]);
+  };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("avatar", fileSelezionato);
+
+    dispatch(uploadImageAction(formData));
+
+    setShowModal(false);
   };
 
   if (!utente) {
@@ -46,7 +69,28 @@ const MyProfile = () => {
         <Card>
           <div className="row">
             <div className="col-4 img-contain-profilo">
-              <img src={utente.avatar} alt="avatar utente" />
+              <img src={utente.avatar} alt="avatar utente" onClick={handleShowModal} />
+              <Modal size="lg" show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Cambia Immagine del Profilo</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form>
+                    <Form.Group className="mb-3" controlId="formFile">
+                      <Form.Label>Seleziona un&rsquo;immagine</Form.Label>
+                      <Form.Control onChange={handleCambiaFile} type="file" accept="image/*" autoFocus />
+                    </Form.Group>
+                  </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleCloseModal}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleUpload}>
+                    Salva Immagine
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
             <div className="col-8 mt-5">
               <p>

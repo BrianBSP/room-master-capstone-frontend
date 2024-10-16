@@ -112,114 +112,114 @@ const DettagliPreventivo = () => {
                 <Modal size="lg" show={showModal} onHide={handleCloseModal}>
                   <Modal.Header closeButton>
                     <Modal.Title>Modifica Preventivo</Modal.Title>
-                    <Modal.Body>
-                      <Form>
-                        <Form.Group className="mb-3" controlId="formArrivo">
-                          <Form.Label>Arrivo</Form.Label>
-                          <Form.Control
-                            type="date"
-                            placeholder="Inserisci qui la data di arrivo"
-                            value={arrivo}
-                            onChange={(e) => setArrivo(e.target.value)}
-                            min={new Date().toISOString().split("T")[0]}
-                          />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPartenza">
-                          <Form.Label>Partenza</Form.Label>
-                          <Form.Control
-                            type="date"
-                            placeholder="Inserisci qui la data di partenza"
-                            value={partenza}
-                            onChange={(e) => setPartenza(e.target.value)}
-                            min={arrivo}
-                          />
-                        </Form.Group>
-                        <Form.Select
-                          aria-label="Seleziona Tipo Camera"
-                          value={tipoCamera}
-                          onChange={(e) => setTipoCamera(e.target.value)}
-                        >
-                          <option>- Seleziona il tipo di camera -</option>
-                          <option value="FAMILY_ROOM">Family Room</option>
-                          <option value="STANDARD">Standard</option>
-                          <option value="SUITE">Suite</option>
-                        </Form.Select>
-                        <Form.Select
-                          aria-label="Seleziona Tipo Servizio"
-                          value={tipoServizio}
-                          onChange={(e) => setTipoServizio(e.target.value)}
-                        >
-                          <option>- Seleziona il tipo di servizio -</option>
-                          <option value="ALL_INCLUSIVE">All Inclusive</option>
-                          <option value="PENSIONE_COMPLETA">Pensione Completa</option>
-                          <option value="MEZZA_PENSIONE">Mezza Pensione</option>
-                          <option value="BAD_BREAKFAST">Bad & Breakfast</option>
-                        </Form.Select>
-                        <Form.Select
-                          aria-label="Seleziona Numero Adulti"
-                          value={adulti}
-                          onChange={(e) => setAdulti(e.target.value)}
-                        >
-                          <option>- Seleziona il numero di adulti -</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                          <option value="13">13</option>
-                          <option value="14">14</option>
-                          <option value="15">15</option>
-                          <option value="16">16</option>
-                          <option value="17">17</option>
-                          <option value="18">18</option>
-                          <option value="19">19</option>
-                          <option value="20">20</option>
-                        </Form.Select>
-                        <Form.Select
-                          aria-label="Seleziona Numero Bambini"
-                          value={bambini}
-                          onChange={(e) => setBambini(e.target.value)}
-                        >
-                          <option>- Seleziona il numero di bambini -</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                          <option value="13">13</option>
-                          <option value="14">14</option>
-                          <option value="15">15</option>
-                          <option value="16">16</option>
-                          <option value="17">17</option>
-                          <option value="18">18</option>
-                          <option value="19">19</option>
-                          <option value="20">20</option>
-                        </Form.Select>
-                      </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleCloseModal}>
-                        Chiudi
-                      </Button>
-                      <Button variant="primary" onClick={handleUpdatePreventivo}>
-                        Salva Modifiche
-                      </Button>
-                    </Modal.Footer>
                   </Modal.Header>
+                  <Modal.Body>
+                    <Form>
+                      <Form.Group className="mb-3" controlId="formArrivo">
+                        <Form.Label>Arrivo</Form.Label>
+                        <Form.Control
+                          type="date"
+                          placeholder="Inserisci qui la data di arrivo"
+                          value={arrivo}
+                          onChange={(e) => setArrivo(e.target.value)}
+                          min={new Date().toISOString().split("T")[0]}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="formPartenza">
+                        <Form.Label>Partenza</Form.Label>
+                        <Form.Control
+                          type="date"
+                          placeholder="Inserisci qui la data di partenza"
+                          value={partenza}
+                          onChange={(e) => setPartenza(e.target.value)}
+                          min={arrivo}
+                        />
+                      </Form.Group>
+                      <Form.Select
+                        aria-label="Seleziona Tipo Camera"
+                        value={tipoCamera}
+                        onChange={(e) => setTipoCamera(e.target.value)}
+                      >
+                        <option>- Seleziona il tipo di camera -</option>
+                        <option value="FAMILY_ROOM">Family Room</option>
+                        <option value="STANDARD">Standard</option>
+                        <option value="SUITE">Suite</option>
+                      </Form.Select>
+                      <Form.Select
+                        aria-label="Seleziona Tipo Servizio"
+                        value={tipoServizio}
+                        onChange={(e) => setTipoServizio(e.target.value)}
+                      >
+                        <option>- Seleziona il tipo di servizio -</option>
+                        <option value="ALL_INCLUSIVE">All Inclusive</option>
+                        <option value="PENSIONE_COMPLETA">Pensione Completa</option>
+                        <option value="MEZZA_PENSIONE">Mezza Pensione</option>
+                        <option value="BAD_BREAKFAST">Bad & Breakfast</option>
+                      </Form.Select>
+                      <Form.Select
+                        aria-label="Seleziona Numero Adulti"
+                        value={adulti}
+                        onChange={(e) => setAdulti(e.target.value)}
+                      >
+                        <option>- Seleziona il numero di adulti -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                      </Form.Select>
+                      <Form.Select
+                        aria-label="Seleziona Numero Bambini"
+                        value={bambini}
+                        onChange={(e) => setBambini(e.target.value)}
+                      >
+                        <option>- Seleziona il numero di bambini -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                      </Form.Select>
+                    </Form>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseModal}>
+                      Chiudi
+                    </Button>
+                    <Button variant="primary" onClick={handleUpdatePreventivo}>
+                      Salva Modifiche
+                    </Button>
+                  </Modal.Footer>
                 </Modal>
               </Card.Body>
             </Card>
