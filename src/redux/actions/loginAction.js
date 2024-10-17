@@ -20,15 +20,11 @@ export const loginAction = (utente) => {
 
       if (resp.ok) {
         let response = await resp.json();
-        console.log(response);
-
-        /* localStorage.setItem("utente", utente.email); */
         localStorage.setItem("accessToken", response.AccessToken);
         dispatch({
           type: LOGIN_UTENTE,
           payload: response,
         });
-        /* localStorage.setItem("utente", JSON.stringify(response)); */
 
         alert("Login effettuato con successo");
       } else {

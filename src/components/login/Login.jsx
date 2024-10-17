@@ -18,16 +18,14 @@ const Login = () => {
 
     dispatch(loginAction(utente));
 
-    dispatch(getUtenteAction());
-
     const autenticato = localStorage.getItem("accessToken");
-    console.log(autenticato);
-
     if (!autenticato) {
       navigate("/login");
     } else {
       navigate("/dashboard");
     }
+
+    dispatch(getUtenteAction());
   };
 
   const handleIndietro = () => {
@@ -63,10 +61,10 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Rimani collegato" className="check-section" />
-          </Form.Group>
-          <Button type="submit">Login</Button>
+
+          <Button className="mt-5" type="submit">
+            Login
+          </Button>
         </Form>
       </div>
       <div className="login-registra-section">
