@@ -22,17 +22,18 @@ export const uploadImageAction = (formData) => {
         body: formData,
         headers: {
           Authorization: `Bearer ${token}`,
-          /* "Content-Type": "application/json", */
         },
       });
 
       if (resp.ok) {
         let response = await resp.json();
+        console.log(response);
+
         dispatch({
           type: UPLOAD_IMG_UTENTE,
           payload: response,
         });
-        JSON.parse(localStorage.setItem("utente", response.utente));
+        JSON.parse(localStorage.setItem("utente", response.utente.avatar));
       } else {
         throw new Error("Errore nel caricamento dell'immagine");
       }

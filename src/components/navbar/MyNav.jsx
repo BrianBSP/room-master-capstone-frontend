@@ -12,7 +12,7 @@ const MyNav = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Container className="d-flex justify-content-between">
-            <div className="d-flex">
+            <div className="d-flex align-items-center">
               <Nav.Link href="/#home">Home</Nav.Link>
               <Nav.Link href="/#about-contain" className="ms-4">
                 About Us
@@ -27,7 +27,8 @@ const MyNav = () => {
             <div>
               {utente ? (
                 <Nav.Link href="/profilo">
-                  Ciao, {utente.nome} {utente.cognome} <img src={utente.avatar} width={25} className="rounded" />
+                  Ciao, {utente.nome} {utente.cognome}{" "}
+                  <img src={utente.avatar} height={50} width={35} className="rounded" />
                 </Nav.Link>
               ) : (
                 <Nav.Link href="/login">Login</Nav.Link>

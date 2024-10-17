@@ -3,9 +3,43 @@ import { Link, Navigate } from "react-router-dom";
 
 const DashUtente = () => {
   const autenticato = localStorage.getItem("accessToken");
+  const utente = JSON.parse(localStorage.getItem("utente"));
+  const ruolo = utente.ruoloUtente;
 
   if (!autenticato) {
     return <Navigate to="/login" />;
+  }
+
+  if (ruolo === "ADMIN") {
+    return (
+      <Container className="dash-section">
+        <div>
+          <h2 className="bg-body-tertiary pb-3 rounded-3">Dashboard ADMIN</h2>
+        </div>
+        <Container>
+          <Link to="/gestione-utenti">
+            <Card>
+              <h4>Gestione Utenti</h4>
+            </Card>
+          </Link>
+          <Link>
+            <Card>
+              <h4>Gestione Preventivi</h4>
+            </Card>
+          </Link>
+          <Link>
+            <Card>
+              <h4>Gestione Prenotazioni</h4>
+            </Card>
+          </Link>
+          <Link>
+            <Card>
+              <h4>Gestione Camere</h4>
+            </Card>
+          </Link>
+        </Container>
+      </Container>
+    );
   }
   return (
     <Container className="dash-section">
