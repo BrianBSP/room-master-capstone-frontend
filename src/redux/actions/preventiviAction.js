@@ -53,6 +53,7 @@ export const preventiviAction = () => {
         });
       }
     } catch (error) {
+      console.error("Errore: ", error);
       dispatch({
         type: LISTA_PREVENTIVI_ERROR,
         payload: "Errore durante la richiesta dei dati: " + error.message,
@@ -87,6 +88,8 @@ export const preventivoByIdAction = (preventivoId) => {
           type: DETTAGLI_PREV,
           payload: response,
         });
+      } else {
+        throw new Error("Errore nella richiesta: " + resp.statusText);
       }
     } catch (error) {
       dispatch({
@@ -205,6 +208,7 @@ export const richiediPreventivoAction = (preventivo) => {
         throw new Error("Errore nella richiesta: " + resp.statusText);
       }
     } catch (error) {
+      console.error("Errore: ", error);
       dispatch({
         type: CREA_PREVENTIVO_FALLITO,
         payload: error.message,

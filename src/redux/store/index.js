@@ -7,6 +7,9 @@ import preventivoUpdateReducer from "../reducers/preventivoUpdateReducer";
 import prenotazioniReducer from "../reducers/prenotazioniReducer";
 import prenotazioneDettaglioReducer from "../reducers/prenotazioneDettaglioReducer";
 import uploadImageReducer from "../reducers/uploadImageReducer";
+import cercaUtentiReducer from "../reducers/cercaUtentiReducer";
+import utentiReducer from "../reducers/utentiReducer";
+import utenteSelezionatoReducer from "../reducers/utenteSelezionatoReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -17,6 +20,9 @@ const rootReducer = combineReducers({
   prenotazioni: prenotazioniReducer,
   dettaglioPrenotazione: prenotazioneDettaglioReducer,
   uploadImage: uploadImageReducer,
+  cercaUtenti: cercaUtentiReducer,
+  utenti: utentiReducer,
+  utenteSelezionato: utenteSelezionatoReducer,
 });
 
 const store = configureStore({

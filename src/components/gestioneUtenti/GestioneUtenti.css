@@ -10,3 +10,12 @@
   margin-block: 2.5rem;
   text-align: center;
 }
+
+.input-search-utente {
+  margin-left: 100px;
+  display: flex;
+}
+
+.input-search-utente {
+  max-width: 650px;
+}
