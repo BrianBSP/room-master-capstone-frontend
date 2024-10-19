@@ -10,7 +10,8 @@ const GestioneUtenti = () => {
   const dispatch = useDispatch();
 
   const [parola, setParola] = useState("");
-  const { utenti, loading, error } = useSelector((state) => state.cercaUtenti || state.utenti);
+  const { cercaUtenti, cercaLoading, cercaError } = useSelector((state) => state.cercaUtenti);
+  const { utenti, loading, error, links, page } = useSelector((state) => state.utenti);
 
   const handleIndietro = () => {
     navigate("/dashboard");
@@ -23,6 +24,18 @@ const GestioneUtenti = () => {
 
   const handleListaUtenti = () => {
     dispatch(utentiAction());
+  };
+
+  const handleProssimaPagina = () => {
+    if (links.next) {
+      dispatch(utentiAction(links.next.href));
+    }
+  };
+
+  const handlePrecedentePagina = () => {
+    if (links.prev) {
+      dispatch(utentiAction(links.prev.href));
+    }
   };
 
   const handleClickUtente = (utenteId) => {
@@ -68,6 +81,21 @@ const GestioneUtenti = () => {
         </Link>
       </Container>
       <Container>
+        {cercaLoading && <p>Caricamento in corso...</p>}
+        {cercaError && <p className="text-danger">{cercaError}</p>}
+        {cercaUtenti && cercaUtenti.length > 0 && (
+          <Card className="mt-4 p-4">
+            <h5>Risultati della ricerca: </h5>
+            <ListGroup>
+              {cercaUtenti.map((utente) => (
+                <ListGroup.Item action variant="light" onClick={() => handleClickUtente(utente.id)} key={utente.id}>
+                  {utente.nome} {utente.cognome}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </Card>
+        )}
+        {utenti && utenti.length === 0 && !loading && <p>Nessun utente trovato.</p>}
         {loading && <p>Caricamento in corso...</p>}
         {error && <p className="text-danger">{error}</p>}
         {utenti && utenti.length > 0 && (
@@ -80,9 +108,19 @@ const GestioneUtenti = () => {
                 </ListGroup.Item>
               ))}
             </ListGroup>
+            <div className="text-center">
+              <Button onClick={handlePrecedentePagina} disabled={!links.prev}>
+                Precedente
+              </Button>
+              <span className="mx-3">
+                Pagina {page.number + 1} di {page.totalPages}
+              </span>
+              <Button onClick={handleProssimaPagina} disabled={!links.next}>
+                Successivo
+              </Button>
+            </div>
           </Card>
         )}
-        {utenti && utenti.length === 0 && !loading && <p>Nessun utente trovato.</p>}
       </Container>
     </Container>
   );

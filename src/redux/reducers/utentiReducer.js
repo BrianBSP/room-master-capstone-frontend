@@ -4,6 +4,8 @@ const initialState = {
   utenti: [],
   loading: false,
   error: null,
+  links: {},
+  page: {},
 };
 
 const utentiReducer = (state = initialState, action) => {
@@ -18,7 +20,9 @@ const utentiReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        utenti: action.payload,
+        utenti: action.payload.utenti,
+        links: action.payload.links,
+        page: action.payload.page,
       };
     case CERCA_UTENTI_FALLITO:
       return {

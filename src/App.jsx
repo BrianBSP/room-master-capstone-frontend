@@ -20,7 +20,7 @@ import DettagliPrenotazione from "./components/dettagliPrenotazione/DettagliPren
 import RichiediPreventivo from "./components/richiediPreventivo/RichiediPreventivo.jsx";
 import MyProfile from "./components/profilo/MyProfile.jsx";
 import GestioneUtenti from "./components/gestioneUtenti/GestioneUtenti.jsx";
-import Utente from "./components/utente/Utente.jsx";
+import UtenteDettaglio from "./components/utente/UtenteDettaglio.jsx";
 
 function App() {
   return (
@@ -49,7 +49,7 @@ function App() {
         <Route path="/richiesta-preventivo" element={<RichiediPreventivo />} />
         <Route path="/profilo" element={<MyProfile />} />
         <Route path="/gestione-utenti" element={<GestioneUtenti />} />
-        <Route path="/utenti/:utenteId" element={<Utente />} />
+        <Route path="/utenti/:utenteId" element={<UtenteDettaglio />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

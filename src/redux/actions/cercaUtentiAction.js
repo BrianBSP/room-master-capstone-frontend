@@ -8,6 +8,10 @@ export const UTENTE_SELEZIONATO = "UTENTE_SELEZIONATO";
 export const UTENTE_SELEZIONATO_RICHIESTA = "UTENTE_SELEZIONATO_RICHIESTA";
 export const UTENTE_SELEZIONATO_FALLITO = "UTENTE_SELEZIONATO_FALLITO";
 
+export const DETTAGLIO_UTENTE_RICHIESTA = "DETTAGLIO_UTENTE_RICHIESTA";
+export const DETTAGLIO_UTENTE = "DETTAGLIO_UTENTE";
+export const DETTAGLIO_UTENTE_FALLITO = "DETTAGLIO_UTENTE_FALLITO";
+
 export const cercaUtentiAction = (parola) => {
   return async (dispatch) => {
     try {
@@ -47,7 +51,7 @@ export const cercaUtentiAction = (parola) => {
   };
 };
 
-export const utentiAction = () => {
+export const utentiAction = (url = "http://localhost:3001/utenti") => {
   return async (dispatch) => {
     try {
       dispatch({ type: CERCA_UTENTI_RICHIESTA });
@@ -59,7 +63,7 @@ export const utentiAction = () => {
         });
       }
 
-      let resp = await fetch("http://localhost:3001/utenti", {
+      let resp = await fetch(url, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -73,7 +77,7 @@ export const utentiAction = () => {
 
         dispatch({
           type: CERCA_UTENTI,
-          payload: response.content,
+          payload: { utenti: response._embedded.utentiRicercaRespDTOList, links: response._links, page: response.page },
         });
       } else {
         throw new Error("Errore nella richiesta: " + resp.statusText);
@@ -110,6 +114,7 @@ export const utenteByIdAction = (utenteId) => {
 
       if (resp.ok) {
         let response = await resp.json();
+
         dispatch({
           type: UTENTE_SELEZIONATO,
           payload: response,
