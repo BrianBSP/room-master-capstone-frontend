@@ -13,6 +13,8 @@ const GestioneUtenti = () => {
   const { cercaUtenti, cercaLoading, cercaError } = useSelector((state) => state.cercaUtenti);
   const { utenti, loading, error, links, page } = useSelector((state) => state.utenti);
 
+  console.log(utenti);
+
   const handleIndietro = () => {
     navigate("/dashboard");
   };
@@ -87,9 +89,14 @@ const GestioneUtenti = () => {
           <Card className="mt-4 p-4">
             <h5>Risultati della ricerca: </h5>
             <ListGroup>
-              {cercaUtenti.map((utente) => (
-                <ListGroup.Item action variant="light" onClick={() => handleClickUtente(utente.id)} key={utente.id}>
-                  {utente.nome} {utente.cognome}
+              {cercaUtenti.map((utenteCercato) => (
+                <ListGroup.Item
+                  action
+                  variant="light"
+                  onClick={() => handleClickUtente(utenteCercato.id)}
+                  key={utenteCercato.id}
+                >
+                  {utenteCercato.nome} {utenteCercato.cognome}
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -103,7 +110,12 @@ const GestioneUtenti = () => {
             <h5>Risultati della ricerca: </h5>
             <ListGroup>
               {utenti.map((utente) => (
-                <ListGroup.Item action variant="light" onClick={() => handleClickUtente(utente.id)} key={utente.id}>
+                <ListGroup.Item
+                  action
+                  variant="light"
+                  onClick={() => handleClickUtente(utente.utenteId)}
+                  key={utente.utenteId}
+                >
                   {utente.nome} {utente.cognome}
                 </ListGroup.Item>
               ))}
@@ -113,7 +125,7 @@ const GestioneUtenti = () => {
                 Precedente
               </Button>
               <span className="mx-3">
-                Pagina {page.number + 1} di {page.totalPages}
+                Pagina {page.number + 1 || 1} di {page.totalPages || 1}
               </span>
               <Button onClick={handleProssimaPagina} disabled={!links.next}>
                 Successivo
