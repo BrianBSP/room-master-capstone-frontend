@@ -143,7 +143,7 @@ export const utenteByIdAction = (utenteId) => {
 export const updateUtenteAction = (utente) => {
   return async (dispatch) => {
     try {
-      dispatch({ tyoe: UPDATE_UTENTE_RICHIESTA });
+      dispatch({ type: UPDATE_UTENTE_RICHIESTA });
 
       const token = localStorage.getItem("accessToken");
       if (!token) {
@@ -164,6 +164,8 @@ export const updateUtenteAction = (utente) => {
 
       if (resp.ok) {
         const response = await resp.json();
+        console.log(response);
+
         dispatch({
           type: UPDATE_UTENTE,
           payload: response,

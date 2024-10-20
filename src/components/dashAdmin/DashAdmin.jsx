@@ -1,4 +1,4 @@
-import { Card, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
@@ -14,21 +14,21 @@ const DashAdmin = () => {
             <h4>Gestione Utenti</h4>
           </div>
         </Link>
-        <Link>
-          <Card>
+        {/* <Link to="/gestione-preventivi">
+          <div>
             <h4>Gestione Preventivi</h4>
-          </Card>
+          </div>
         </Link>
-        <Link>
-          <Card>
+        <Link to="/gestione-prenotazioni">
+          <div>
             <h4>Gestione Prenotazioni</h4>
-          </Card>
+          </div>
         </Link>
-        <Link>
-          <Card>
+        <Link to="/gestione-camere">
+          <div>
             <h4>Gestione Camere</h4>
-          </Card>
-        </Link>
+          </div>
+        </Link> */}
       </Container>
     </Container>
   );

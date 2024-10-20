@@ -11,6 +11,7 @@ const UtenteDettaglio = () => {
   const navigate = useNavigate();
 
   const { utente, loading, error } = useSelector((state) => state.utenteSelezionato);
+  console.log(utente);
 
   useEffect(() => {
     dispatch(utenteByIdAction(utenteId));
@@ -111,7 +112,9 @@ const UtenteDettaglio = () => {
                     <Button variant="secondary" onClick={handleCloseModal}>
                       Chiudi
                     </Button>
-                    <Button onClick={handleUpdateUtente}>Salva Modifiche</Button>
+                    <Button type="submit" onClick={handleUpdateUtente}>
+                      Salva Modifiche
+                    </Button>
                   </Modal.Footer>
                 </Modal>
                 <Button variant="danger" onClick={handleEliminaUtente}>

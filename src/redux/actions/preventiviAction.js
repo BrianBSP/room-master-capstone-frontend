@@ -20,6 +20,14 @@ export const CREA_PREVENTIVO_RICHIESTA = "CREA_PREVENTIVO_RICHIESTA";
 export const CREA_PREVENTIVO = "CREA_PREVENTIVO";
 export const CREA_PREVENTIVO_FALLITO = "CREA_PREVENTIVO_FALLITO";
 
+export const CERCA_PREVENTIVI_RICHIESTA = "CERCA_PREVENTIVI_RICHIESTA";
+export const CERCA_PREVENTIVI = "CERCA_PREVENTIVI";
+export const CERCA_PREVENTIVI_FALLITO = "CERCA_PREVENTIVI_FALLITO";
+
+export const LISTA_ALL_PREVENTIVI = "LISTA_ALL_PREVENTIVI";
+export const LISTA_ALL_PREVENTIVI_FALLITO = "LISTA_ALL_PREVENTIVI_FALLITO";
+export const LISTA_ALL_PREVENTIVI_RICHIERSTA = "LISTA_ALL_PREVENTIVI_RICHIERSTA";
+
 export const preventiviAction = () => {
   return async (dispatch) => {
     try {
@@ -211,6 +219,90 @@ export const richiediPreventivoAction = (preventivo) => {
       console.error("Errore: ", error);
       dispatch({
         type: CREA_PREVENTIVO_FALLITO,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const cercaPreventiviAction = (parola) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: CERCA_PREVENTIVI_RICHIESTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/preventivi/utenti/${parola}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        dispatch({
+          type: CERCA_PREVENTIVI,
+          payload: response,
+        });
+      } else {
+        throw new Error("Errore nella richiesta: " + resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error ", error);
+      dispatch({
+        type: CERCA_PREVENTIVI_FALLITO,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllPreventiviAction = (url = "http://localhost:3001/preventivi") => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: LISTA_ALL_PREVENTIVI_RICHIERSTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        console.log(response);
+
+        dispatch({
+          type: LISTA_ALL_PREVENTIVI,
+          payload: {
+            preventivi: response._embedded.preventivoRicercaRespDTOList,
+            links: response._links,
+            page: response.page,
+          },
+        });
+      } else {
+        throw new Error("Errore nella richiesta: " + resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      dispatch({
+        type: LISTA_ALL_PREVENTIVI_FALLITO,
         payload: error.message,
       });
     }

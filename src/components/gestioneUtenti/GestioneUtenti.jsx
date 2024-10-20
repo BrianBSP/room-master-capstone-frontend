@@ -14,6 +14,7 @@ const GestioneUtenti = () => {
   const { utenti, loading, error, links, page } = useSelector((state) => state.utenti);
 
   console.log(utenti);
+  console.log(cercaUtenti);
 
   const handleIndietro = () => {
     navigate("/dashboard");
