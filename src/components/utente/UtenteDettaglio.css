@@ -1,0 +1,20 @@
+.dettaglio-utente-section {
+  min-height: 80vh;
+  margin-top: 150px;
+}
+
+.indietro-button {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 5px;
+}
+
+.img-contain-utente {
+  max-width: 300px;
+}
+
+.img-contain-utente img {
+  width: 100%;
+  max-height: 350px;
+  border-radius: 50%;
+}

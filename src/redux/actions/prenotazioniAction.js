@@ -92,6 +92,7 @@ export const prenotazioniByIdAction = (prenotazioneId) => {
 export const eliminaPrenotazioneAction = (prenotazioneId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: ELIMINA_PRENOTAZIONE_RICHIESTA });
       const token = localStorage.getItem("accessToken");
       if (!token) {
         return dispatch({

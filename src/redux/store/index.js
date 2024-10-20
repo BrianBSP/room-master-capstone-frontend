@@ -10,6 +10,7 @@ import uploadImageReducer from "../reducers/uploadImageReducer";
 import cercaUtentiReducer from "../reducers/cercaUtentiReducer";
 import utentiReducer from "../reducers/utentiReducer";
 import utenteSelezionatoReducer from "../reducers/utenteSelezionatoReducer";
+import utenteUpdateReducer from "../reducers/utenteUpdateReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   cercaUtenti: cercaUtentiReducer,
   utenti: utentiReducer,
   utenteSelezionato: utenteSelezionatoReducer,
+  utenteUpdate: utenteUpdateReducer,
 });
 
 const store = configureStore({
