@@ -351,3 +351,91 @@ export const eliminaPreventivoAction = (preventivoId) => {
     }
   };
 };
+
+export const getAllAccettati = (url = "http://localhost:3001/preventivi/accettati") => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: LISTA_ALL_PREVENTIVI_FALLITO });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        dispatch({
+          type: LISTA_ALL_PREVENTIVI,
+          payload: {
+            preventivi: response._embedded.preventivoRicercaRespDTOList,
+            links: response._links,
+            page: response.page,
+          },
+        });
+      } else {
+        throw new Error("Errore nella richiesta: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      dispatch({
+        type: LISTA_ALL_PREVENTIVI_FALLITO,
+        payload: error,
+      });
+    }
+  };
+};
+
+export const getPreventiviAnnoAction = (anno) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: LISTA_ALL_PREVENTIVI_RICHIERSTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/preventivi/anno/${anno}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        console.log(response);
+
+        dispatch({
+          type: LISTA_ALL_PREVENTIVI,
+          payload: {
+            preventivi: response._embedded.preventivoRicercaRespDTOList,
+            links: response._links,
+            page: response.page,
+          },
+        });
+      } else {
+        throw new Error("Errore nellaq richiesta: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Erroraccio: ", error);
+      dispatch({
+        type: LISTA_ALL_PREVENTIVI_FALLITO,
+        payload: "Nessun preventivo in quest'anno selezionare un altro anno..",
+      });
+    }
+  };
+};

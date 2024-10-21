@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Container, Form, InputGroup, ListGroup } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { cercaPreventiviAction, getAllPreventiviAction } from "../../redux/actions/preventiviAction";
+import {
+  cercaPreventiviAction,
+  getAllAccettati,
+  getAllPreventiviAction,
+  getPreventiviAnnoAction,
+} from "../../redux/actions/preventiviAction";
 
 const GestionePreventivi = () => {
   const navigate = useNavigate();
@@ -14,6 +19,7 @@ const GestionePreventivi = () => {
   };
 
   const [parola, setParola] = useState("");
+  const [anno, setAnno] = useState("");
   const { cercaPreventivi, cercaLoading, cercaError } = useSelector((state) => state.cercaPreventivi);
   const { preventivi, loading, error, links, page } = useSelector((state) => state.preventiviAll);
 
@@ -26,6 +32,10 @@ const GestionePreventivi = () => {
 
   const handleListaPreventivi = () => {
     dispatch(getAllPreventiviAction());
+  };
+
+  const handleListaPreventiviAccettati = () => {
+    dispatch(getAllAccettati());
   };
 
   console.log(cercaPreventivi);
@@ -46,6 +56,12 @@ const GestionePreventivi = () => {
   const handleClickPreventivo = (preventivoId) => {
     navigate(`/preventivi/${preventivoId}`);
   };
+
+  useEffect(() => {
+    if (anno) {
+      dispatch(getPreventiviAnnoAction(anno));
+    }
+  }, [dispatch, anno]);
 
   return (
     <Container className="gestione-utenti-section">
@@ -84,10 +100,27 @@ const GestionePreventivi = () => {
             <h5>Tutti i Preventivi</h5>
           </Card>
         </Link>
+        <div>
+          <Form.Group>
+            <Form.Select value={anno} onChange={(e) => setAnno(e.target.value)} aria-label="Seleziona anno">
+              <option>- Seleziona l&rsquo;anno -</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+            </Form.Select>
+          </Form.Group>
+        </div>
+        <Link className="text-decoration-none">
+          <Card className="p-3" onClick={handleListaPreventiviAccettati}>
+            <h5>Preventivi Accettati</h5>
+          </Card>
+        </Link>
       </Container>
       <Container>
         {cercaLoading && <p>Caricamento in corso...</p>}
-        {cercaError && <p className="text-danger">{cercaError}</p>}
+        {cercaError && <p className="text-danger error-section">{cercaError}</p>}
         {cercaPreventivi && cercaPreventivi.length > 0 && (
           <Card className="mt-4 p-4">
             <h5>Risultati della ricerca:</h5>
@@ -108,7 +141,9 @@ const GestionePreventivi = () => {
             </ListGroup>
           </Card>
         )}
-        {preventivi && preventivi.length === 0 && !loading && <p>Nessun preventivo trovato</p>}
+        {preventivi && preventivi.length === 0 && !loading && (
+          <p className="text-center mt-5">Nessun preventivo trovato</p>
+        )}
         {loading && <p>Caricamento in corso...</p>}
         {error && <p className="text-danger">{error}</p>}
         {preventivi && preventivi.length > 0 && (
