@@ -28,6 +28,9 @@ export const LISTA_ALL_PREVENTIVI = "LISTA_ALL_PREVENTIVI";
 export const LISTA_ALL_PREVENTIVI_FALLITO = "LISTA_ALL_PREVENTIVI_FALLITO";
 export const LISTA_ALL_PREVENTIVI_RICHIERSTA = "LISTA_ALL_PREVENTIVI_RICHIERSTA";
 
+export const ELIMINA_PREVENTIVO = "ELIMINA_PREVENTIVO";
+export const ELIMINA_PREVENTIVO_RICHIESTA = "ELIMINA_PREVENTIVO_RICHIESTA";
+export const ELIMINA_PREVENTIVO_FALLITA = "ELIMINA_PREVENTIVO_FALLITA";
 export const preventiviAction = () => {
   return async (dispatch) => {
     try {
@@ -237,7 +240,7 @@ export const cercaPreventiviAction = (parola) => {
         });
       }
 
-      let resp = await fetch(`http://localhost:3001/preventivi/utenti/${parola}`, {
+      let resp = await fetch(`http://localhost:3001/preventivi/search/${parola}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -247,6 +250,8 @@ export const cercaPreventiviAction = (parola) => {
 
       if (resp.ok) {
         let response = await resp.json();
+        console.log(response);
+
         dispatch({
           type: CERCA_PREVENTIVI,
           payload: response,
@@ -303,6 +308,44 @@ export const getAllPreventiviAction = (url = "http://localhost:3001/preventivi")
       console.error("Error: ", error);
       dispatch({
         type: LISTA_ALL_PREVENTIVI_FALLITO,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const eliminaPreventivoAction = (preventivoId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: ELIMINA_PREVENTIVO_RICHIESTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/preventivi/${preventivoId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        dispatch({
+          type: ELIMINA_PREVENTIVO,
+          payload: preventivoId,
+        });
+      } else {
+        throw new Error("Errore nella richiesta: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error ", error);
+      dispatch({
+        type: ELIMINA_PREVENTIVO_FALLITA,
         payload: error.message,
       });
     }

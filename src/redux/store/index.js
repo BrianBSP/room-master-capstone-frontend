@@ -11,6 +11,8 @@ import cercaUtentiReducer from "../reducers/cercaUtentiReducer";
 import utentiReducer from "../reducers/utentiReducer";
 import utenteSelezionatoReducer from "../reducers/utenteSelezionatoReducer";
 import utenteUpdateReducer from "../reducers/utenteUpdateReducer";
+import cercaPreventiviReducer from "../reducers/cercaPreventiviReducer";
+import preventiviAllReducer from "../reducers/preventiviAllReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
   utenti: utentiReducer,
   utenteSelezionato: utenteSelezionatoReducer,
   utenteUpdate: utenteUpdateReducer,
+  cercaPreventivi: cercaPreventiviReducer,
+  preventiviAll: preventiviAllReducer,
 });
 
 const store = configureStore({

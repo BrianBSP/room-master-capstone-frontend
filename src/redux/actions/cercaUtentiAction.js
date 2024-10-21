@@ -42,6 +42,8 @@ export const cercaUtentiAction = (parola) => {
 
       if (resp.ok) {
         let response = await resp.json();
+        console.log(response);
+
         dispatch({
           type: CERCA_UTENTI,
           payload: response,
@@ -209,7 +211,7 @@ export const eliminaUtenteAction = (utenteId) => {
           payload: utenteId,
         });
       } else {
-        throw new Error("Errore nella richiesta: " + resp.statusText);
+        throw new Error("Errore nella richiesta: ", resp.statusText);
       }
     } catch (error) {
       console.error(error);

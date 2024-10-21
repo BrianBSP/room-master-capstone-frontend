@@ -108,7 +108,7 @@ const GestioneUtenti = () => {
         {error && <p className="text-danger">{error}</p>}
         {utenti && utenti.length > 0 && (
           <Card className="mt-4 p-4">
-            <h5>Risultati della ricerca: </h5>
+            <h5>Risultati: </h5>
             <ListGroup>
               {utenti.map((utente) => (
                 <ListGroup.Item

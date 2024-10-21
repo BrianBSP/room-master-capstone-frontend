@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button, Card, Container, Form, InputGroup } from "react-bootstrap";
+import { Button, Card, Container, Form, InputGroup, ListGroup } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { cercaPreventiviAction, getAllPreventiviAction } from "../../redux/actions/preventiviAction";
 
@@ -14,13 +14,37 @@ const GestionePreventivi = () => {
   };
 
   const [parola, setParola] = useState("");
+  const { cercaPreventivi, cercaLoading, cercaError } = useSelector((state) => state.cercaPreventivi);
+  const { preventivi, loading, error, links, page } = useSelector((state) => state.preventiviAll);
 
-  const handleCercaPreventivi = () => {
+  const handleCercaPreventivi = (e) => {
+    e.preventDefault();
+    console.log(parola);
+
     dispatch(cercaPreventiviAction(parola));
   };
 
   const handleListaPreventivi = () => {
     dispatch(getAllPreventiviAction());
+  };
+
+  console.log(cercaPreventivi);
+  console.log(preventivi);
+
+  const handlePrecedentePagina = () => {
+    if (links.prev) {
+      dispatch(getAllPreventiviAction(links.prev.href));
+    }
+  };
+
+  const handleProssimaPagina = () => {
+    if (links.next) {
+      dispatch(getAllPreventiviAction(links.next.href));
+    }
+  };
+
+  const handleClickPreventivo = (preventivoId) => {
+    navigate(`/preventivi/${preventivoId}`);
   };
 
   return (
@@ -60,6 +84,63 @@ const GestionePreventivi = () => {
             <h5>Tutti i Preventivi</h5>
           </Card>
         </Link>
+      </Container>
+      <Container>
+        {cercaLoading && <p>Caricamento in corso...</p>}
+        {cercaError && <p className="text-danger">{cercaError}</p>}
+        {cercaPreventivi && cercaPreventivi.length > 0 && (
+          <Card className="mt-4 p-4">
+            <h5>Risultati della ricerca:</h5>
+            <ListGroup>
+              {cercaPreventivi.map((preventivoCercato) => (
+                <ListGroup.Item
+                  onClick={() => handleClickPreventivo(preventivoCercato.id)}
+                  key={preventivoCercato.id}
+                  action
+                  variant="light"
+                >
+                  <p>
+                    Preventivo richiesto il: {preventivoCercato.data} da {preventivoCercato.utente.nome}{" "}
+                    {preventivoCercato.utente.cognome}
+                  </p>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </Card>
+        )}
+        {preventivi && preventivi.length === 0 && !loading && <p>Nessun preventivo trovato</p>}
+        {loading && <p>Caricamento in corso...</p>}
+        {error && <p className="text-danger">{error}</p>}
+        {preventivi && preventivi.length > 0 && (
+          <Card className="mt-4 p-4">
+            <h5>Risultati:</h5>
+            <ListGroup>
+              {preventivi.map((preventivo) => (
+                <ListGroup.Item
+                  onClick={() => handleClickPreventivo(preventivo.preventivoId)}
+                  key={preventivo.preventivoId}
+                  action
+                  variant="light"
+                >
+                  <p>
+                    Preventivo richiesto il: {preventivo.data} da {preventivo.utente.nome} {preventivo.utente.cognome}
+                  </p>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+            <div className="text-center">
+              <Button onClick={handlePrecedentePagina} disabled={!links.prev}>
+                Precedente
+              </Button>
+              <span className="mx-3">
+                {page.number + 1 || 1} di {page.totalPages || 1}
+              </span>
+              <Button onClick={handleProssimaPagina} disabled={!links.next}>
+                Successivo
+              </Button>
+            </div>
+          </Card>
+        )}
       </Container>
     </Container>
   );

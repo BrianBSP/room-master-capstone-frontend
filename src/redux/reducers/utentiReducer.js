@@ -42,6 +42,7 @@ const utentiReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        error: null,
       };
 
     case ELIMINA_UTENTE:

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   accettaPreventivoAction,
+  eliminaPreventivoAction,
   preventivoByIdAction,
   updatePreventivoAction,
 } from "../../redux/actions/preventiviAction";
@@ -10,6 +11,9 @@ import { Button, Card, Container, Form, Modal } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 
 const DettagliPreventivo = () => {
+  const utenteLoggato = JSON.parse(localStorage.getItem("utente"));
+  const sonoAdmin = utenteLoggato && utenteLoggato.ruoloUtente === "ADMIN";
+
   const { preventivoId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,7 +72,15 @@ const DettagliPreventivo = () => {
   };
 
   const handleIndietro = () => {
-    navigate("/preventivi");
+    if (sonoAdmin) {
+      navigate("/gestione-preventivi");
+    } else {
+      navigate("/preventivi");
+    }
+  };
+
+  const handleEliminaPreventivo = (preventivoId) => {
+    dispatch(eliminaPreventivoAction(preventivoId));
   };
 
   return (
@@ -103,6 +115,14 @@ const DettagliPreventivo = () => {
                   <Button variant="success" onClick={handleAccettaPreventivo}>
                     Accetta
                   </Button>
+                )}
+
+                {sonoAdmin && (
+                  <>
+                    <Button variant="danger" onClick={handleEliminaPreventivo}>
+                      Elimina
+                    </Button>
+                  </>
                 )}
 
                 <Button className="ms-3" variant="primary" onClick={handleShowModal}>

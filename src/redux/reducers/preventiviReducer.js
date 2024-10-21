@@ -2,6 +2,9 @@ import {
   ACCETTA_PREV_FAIL,
   ACCETTA_PREV_RICHIESTA,
   ACCETTA_PREVENTIVO,
+  ELIMINA_PREVENTIVO,
+  ELIMINA_PREVENTIVO_FALLITA,
+  ELIMINA_PREVENTIVO_RICHIESTA,
   GET_LISTA_PREVENTIVI,
   LISTA_PREVENTIVI_ERROR,
   LISTA_PREVENTIVI_RICHIERSTA,
@@ -56,6 +59,27 @@ const preventiviReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+
+    case ELIMINA_PREVENTIVO_RICHIESTA:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+
+    case ELIMINA_PREVENTIVO:
+      return {
+        ...state,
+        loading: false,
+        preventivi: state.preventivi.filter((preventivo) => preventivo.id !== action.payload),
+      };
+
+    case ELIMINA_PREVENTIVO_FALLITA:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
 
     default:
