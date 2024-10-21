@@ -12,6 +12,14 @@ export const ELIMINA_PRENOTAZIONE_RICHIESTA = "ELIMINA_PRENOTAZIONE_RICHIESTA";
 export const ELIMINA_PRENOTAZIONE = "ELIMINA_PRENOTAZIONE_RICHIESTA";
 export const ELIMINA_PRENOTAZIONE_FALLITA = "ELIMINA_PRENOTAZIONE_FALLITA";
 
+export const CERCA_PRENOTAZIONI = "CERCA_PRENOTAZIONI";
+export const CERCA_PRENOTAZIONI_RICHIESTA = "CERCA_PRENOTAZIONI_RICHIESTA";
+export const CERCA_PRENOTAZIONI_FALLITA = "CERCA_PRENOTAZIONI_FALLITA";
+
+export const LISTA_ALL_PRENOTAZIONI = "LISTA_ALL_PRENOTAZIONI";
+export const LISTA_ALL_PRENOTAZIONI_FALLITO = "LISTA_ALL_PRENOTAZIONI_FALLITO";
+export const LISTA_ALL_PRENOTAZIONI_RICHIERSTA = "LISTA_ALL_PRENOTAZIONI_RICHIERSTA";
+
 export const prenotazioniAction = () => {
   return async (dispatch) => {
     try {
@@ -121,6 +129,90 @@ export const eliminaPrenotazioneAction = (prenotazioneId) => {
       dispatch({
         type: ELIMINA_PRENOTAZIONE_FALLITA,
         payload: "Errore durante la richiesta dei dati: " + error.message,
+      });
+    }
+  };
+};
+
+export const cercaPrenotazioniAction = (parola) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: CERCA_PRENOTAZIONI_RICHIESTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/prenotazioni/search/${parola}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        dispatch({
+          type: CERCA_PRENOTAZIONI,
+          payload: response,
+        });
+      } else {
+        throw new Error("Errore nella richiesta: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Errore: ", error);
+      dispatch({
+        type: CERCA_PRENOTAZIONI_FALLITA,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const getAllPrenotazioniAction = (url = "http://localhost:3001/prenotazioni") => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: LISTA_ALL_PRENOTAZIONI_RICHIERSTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        console.log(response);
+
+        dispatch({
+          type: LISTA_ALL_PRENOTAZIONI,
+          payload: {
+            prenotazioni: response._embedded.prenotazioneRicercaRespDTOList,
+            links: response._links,
+            page: response.page,
+          },
+        });
+      } else {
+        throw new Error("Errore nella richiesta: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Errore: ", error);
+      dispatch({
+        type: LISTA_ALL_PRENOTAZIONI_FALLITO,
+        payload: error.message,
       });
     }
   };

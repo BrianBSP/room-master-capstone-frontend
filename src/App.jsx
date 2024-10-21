@@ -22,6 +22,7 @@ import MyProfile from "./components/profilo/MyProfile.jsx";
 import GestioneUtenti from "./components/gestioneUtenti/GestioneUtenti.jsx";
 import UtenteDettaglio from "./components/utente/UtenteDettaglio.jsx";
 import GestionePreventivi from "./components/gestionePreventivi/GestionePreventivi.jsx";
+import GestionePrenotazioni from "./components/gestionePrenotazioni/GestionePrenotazioni.jsx";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/gestione-utenti" element={<GestioneUtenti />} />
         <Route path="/utenti/:utenteId" element={<UtenteDettaglio />} />
         <Route path="/gestione-preventivi" element={<GestionePreventivi />} />
+        <Route path="/gestione-prenotazioni" element={<GestionePrenotazioni />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -27,7 +27,7 @@ const DashUtente = () => {
               <h4>Gestione Preventivi</h4>
             </Card>
           </Link>
-          <Link>
+          <Link to="/gestione-prenotazioni">
             <Card>
               <h4>Gestione Prenotazioni</h4>
             </Card>

@@ -434,7 +434,7 @@ export const getPreventiviAnnoAction = (anno) => {
       console.error("Erroraccio: ", error);
       dispatch({
         type: LISTA_ALL_PREVENTIVI_FALLITO,
-        payload: "Nessun preventivo in quest'anno selezionare un altro anno..",
+        payload: "Nessun preventivo in quest'anno selezionare un altro anno...",
       });
     }
   };

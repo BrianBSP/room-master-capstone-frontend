@@ -13,6 +13,8 @@ import utenteSelezionatoReducer from "../reducers/utenteSelezionatoReducer";
 import utenteUpdateReducer from "../reducers/utenteUpdateReducer";
 import cercaPreventiviReducer from "../reducers/cercaPreventiviReducer";
 import preventiviAllReducer from "../reducers/preventiviAllReducer";
+import cercaPrenotazioniReducer from "../reducers/cercaPrenotazioniReducer";
+import prenotazioniAllReducer from "../reducers/prenotazioniAllReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -29,6 +31,8 @@ const rootReducer = combineReducers({
   utenteUpdate: utenteUpdateReducer,
   cercaPreventivi: cercaPreventiviReducer,
   preventiviAll: preventiviAllReducer,
+  cercaPrenotazioni: cercaPrenotazioniReducer,
+  prenotazioniAll: prenotazioniAllReducer,
 });
 
 const store = configureStore({
