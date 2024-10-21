@@ -217,3 +217,48 @@ export const getAllPrenotazioniAction = (url = "http://localhost:3001/prenotazio
     }
   };
 };
+
+export const getPrenotazioniAnnoAction = (anno) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: LISTA_ALL_PRENOTAZIONI_RICHIERSTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/prenotazioni/anno/${anno}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        console.log(response);
+
+        dispatch({
+          type: LISTA_ALL_PRENOTAZIONI,
+          payload: {
+            prenotazioni: response._embedded.prenotazioneRicercaRespDTOList,
+            links: response._links,
+            page: response.page,
+          },
+        });
+      } else {
+        throw new Error("Errore nella richiesta: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      dispatch({
+        type: LISTA_ALL_PRENOTAZIONI_FALLITO,
+        payload: error.message,
+      });
+    }
+  };
+};

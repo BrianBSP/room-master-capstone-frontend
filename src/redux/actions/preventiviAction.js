@@ -428,7 +428,7 @@ export const getPreventiviAnnoAction = (anno) => {
           },
         });
       } else {
-        throw new Error("Errore nellaq richiesta: ", resp.statusText);
+        throw new Error("Errore nella richiesta: ", resp.statusText);
       }
     } catch (error) {
       console.error("Erroraccio: ", error);

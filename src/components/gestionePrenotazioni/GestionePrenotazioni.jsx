@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Container, Form, InputGroup, ListGroup } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { cercaPrenotazioniAction, getAllPrenotazioniAction } from "../../redux/actions/prenotazioniAction";
+import {
+  cercaPrenotazioniAction,
+  getAllPrenotazioniAction,
+  getPrenotazioniAnnoAction,
+} from "../../redux/actions/prenotazioniAction";
 
 const GestionePrenotazioni = () => {
   const navigate = useNavigate();
@@ -40,6 +44,16 @@ const GestionePrenotazioni = () => {
     if (links.next) {
       dispatch(getAllPrenotazioniAction(links.next.href));
     }
+  };
+
+  useEffect(() => {
+    if (anno) {
+      dispatch(getPrenotazioniAnnoAction(anno));
+    }
+  }, [dispatch, anno]);
+
+  const handleClickPrenotazione = (prenotazioneId) => {
+    navigate(`/prenotazioni/${prenotazioneId}`);
   };
 
   return (
@@ -100,7 +114,12 @@ const GestionePrenotazioni = () => {
             <h5>Risultati della ricerca:</h5>
             <ListGroup>
               {cercaPrenotazioni.map((prenotazioneCercata) => (
-                <ListGroup.Item key={prenotazioneCercata.id} action variant="light">
+                <ListGroup.Item
+                  onClick={() => handleClickPrenotazione(prenotazioneCercata.id)}
+                  key={prenotazioneCercata.id}
+                  action
+                  variant="light"
+                >
                   <p>
                     Prenotazione di {prenotazioneCercata.utente.nome} {prenotazioneCercata.utente.cognome} con arrivo il{" "}
                     {prenotazioneCercata.arrivo}
@@ -120,7 +139,12 @@ const GestionePrenotazioni = () => {
             <h5>Risultati:</h5>
             <ListGroup>
               {prenotazioni.map((prenotazione) => (
-                <ListGroup.Item action variant="light" key={prenotazione.prenotazioneId}>
+                <ListGroup.Item
+                  onClick={() => handleClickPrenotazione(prenotazione.prenotazioneId)}
+                  action
+                  variant="light"
+                  key={prenotazione.prenotazioneId}
+                >
                   <p>
                     Prenotazione di {prenotazione.utente.nome} {prenotazione.utente.cognome} con arrivo il{" "}
                     {prenotazione.arrivo}

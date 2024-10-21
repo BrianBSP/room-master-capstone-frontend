@@ -6,6 +6,8 @@ import { eliminaPrenotazioneAction, prenotazioniByIdAction } from "../../redux/a
 import { ArrowLeft } from "react-bootstrap-icons";
 
 const DettagliPrenotazione = () => {
+  const utenteLoggato = JSON.parse(localStorage.getItem("utente"));
+  const sonoAdmin = utenteLoggato && utenteLoggato.ruoloUtente === "ADMIN";
   const { prenotazioneId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,7 +19,11 @@ const DettagliPrenotazione = () => {
   }, [dispatch, prenotazioneId]);
 
   const handleIndietro = () => {
-    navigate("/prenotazioni");
+    if (sonoAdmin) {
+      navigate("/gestione-prenotazioni");
+    } else {
+      navigate("/prenotazioni");
+    }
   };
 
   const handleModifica = () => {
