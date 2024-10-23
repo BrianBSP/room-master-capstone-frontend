@@ -17,22 +17,22 @@ const DashUtente = () => {
           <h2 className="bg-body-tertiary pb-3 rounded-3">Dashboard ADMIN</h2>
         </div>
         <Container>
-          <Link to="/gestione-utenti">
+          <Link className="text-decoration-none" to="/gestione-utenti">
             <Card>
               <h4>Gestione Utenti</h4>
             </Card>
           </Link>
-          <Link to="/gestione-preventivi">
+          <Link className="text-decoration-none" to="/gestione-preventivi">
             <Card>
               <h4>Gestione Preventivi</h4>
             </Card>
           </Link>
-          <Link to="/gestione-prenotazioni">
+          <Link className="text-decoration-none" to="/gestione-prenotazioni">
             <Card>
               <h4>Gestione Prenotazioni</h4>
             </Card>
           </Link>
-          <Link>
+          <Link className="text-decoration-none" to="/gestione-camere">
             <Card>
               <h4>Gestione Camere</h4>
             </Card>
