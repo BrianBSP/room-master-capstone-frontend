@@ -22,8 +22,8 @@ const GestionePrenotazioni = () => {
 
   const { cercaPrenotazioni, cercaLoading, cercaError } = useSelector((state) => state.cercaPrenotazioni);
   const { prenotazioni, loading, error, links, page } = useSelector((state) => state.prenotazioniAll);
-  console.log(cercaPrenotazioni);
-  console.log(prenotazioni);
+  /* console.log(cercaPrenotazioni);
+  console.log(prenotazioni); */
 
   const handleCercaPrenotazione = (e) => {
     e.preventDefault();

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Button, Card, Container, Form, InputGroup } from "react-bootstrap";
+import { Button, Card, Container, Form, InputGroup, ListGroup } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { camereAllAction } from "../../redux/actions/camereAction";
 
 const GestioneCamere = () => {
   const navigate = useNavigate();
@@ -19,7 +20,25 @@ const GestioneCamere = () => {
   };
 
   const handleListaCamere = () => {
-    dispatch();
+    dispatch(camereAllAction());
+  };
+  const { camere, loading, error, links, page } = useSelector((state) => state.camereAll);
+  console.log(camere);
+
+  const handlePrecedentePagina = () => {
+    if (links.prev) {
+      dispatch(camereAllAction(links.prev.href));
+    }
+  };
+
+  const handleProssimaPagina = () => {
+    if (links.next) {
+      dispatch(camereAllAction(links.next.href));
+    }
+  };
+
+  const handleClickCamera = (cameraId) => {
+    navigate(`/camere/${cameraId}`);
   };
 
   return (
@@ -59,6 +78,44 @@ const GestioneCamere = () => {
             <h5>Tutte le Camere</h5>
           </Card>
         </Link>
+        <Link className="text-decoration-none">
+          <Card className="p-3" onClick={handleListaCamere}>
+            <h5>Crea Nuova Camera</h5>
+          </Card>
+        </Link>
+      </Container>
+      <Container>
+        {camere && camere.length === 0 && !loading && <p className="text-center mt-5">Nessun preventivo trovato</p>}
+        {loading && <p>Caricamento in corso...</p>}
+        {error && <p className="text-danger">{error}</p>}
+        {camere && camere.length > 0 && (
+          <Card className="mt-4 p-4">
+            <h5 className="text-center">Risultati:</h5>
+            <ListGroup>
+              {camere.map((camera) => (
+                <ListGroup.Item
+                  action
+                  variant="light"
+                  onClick={() => handleClickCamera(camera.cameraId)}
+                  key={camera.cameraId}
+                >
+                  Camera: {camera.numeroCamera}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+            <div className="text-center">
+              <Button onClick={handlePrecedentePagina} disabled={!links.prev}>
+                Precedente
+              </Button>
+              <span className="mx-3">
+                {page.number + 1 || 1} di {page.totalPages || 1}
+              </span>
+              <Button onClick={handleProssimaPagina} disabled={!links.next}>
+                Successivo
+              </Button>
+            </div>
+          </Card>
+        )}
       </Container>
     </Container>
   );

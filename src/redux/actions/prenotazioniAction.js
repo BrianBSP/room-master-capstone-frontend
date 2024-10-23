@@ -81,6 +81,8 @@ export const prenotazioniByIdAction = (prenotazioneId) => {
 
       if (resp.ok) {
         let response = await resp.json();
+        console.log(response);
+
         dispatch({
           type: DETTAGLI_PRENOTAZIONE,
           payload: response,

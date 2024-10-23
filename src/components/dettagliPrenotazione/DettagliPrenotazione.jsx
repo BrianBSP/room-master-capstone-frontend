@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { eliminaPrenotazioneAction, prenotazioniByIdAction } from "../../redux/actions/prenotazioniAction";
@@ -9,14 +9,18 @@ const DettagliPrenotazione = () => {
   const utenteLoggato = JSON.parse(localStorage.getItem("utente"));
   const sonoAdmin = utenteLoggato && utenteLoggato.ruoloUtente === "ADMIN";
   const { prenotazioneId } = useParams();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const { prenotazione, loading, error } = useSelector((state) => state.dettaglioPrenotazione);
 
   useEffect(() => {
     dispatch(prenotazioniByIdAction(prenotazioneId));
   }, [dispatch, prenotazioneId]);
+
+  console.log(prenotazioneId);
+
+  const { prenotazione, loading, error } = useSelector((state) => state.dettaglioPrenotazione);
+  console.log(prenotazione);
 
   const handleIndietro = () => {
     if (sonoAdmin) {
@@ -33,6 +37,10 @@ const DettagliPrenotazione = () => {
   const handleEliminaPrenotazione = () => {
     dispatch(eliminaPrenotazioneAction(prenotazione.id));
     navigate("/prenotazioni");
+  };
+
+  const handleClickCamera = () => {
+    dispatch();
   };
   return (
     <Container className="dettaglio-preventivo-section">
@@ -51,13 +59,26 @@ const DettagliPrenotazione = () => {
             <Card>
               <Card.Body>
                 <Card.Title>
-                  Dettagli della Prenotazione di{" "}
-                  {/* {prenotazione?.utente.nome + " " + prenotazione?.utente.cognome} */}{" "}
+                  Dettagli della Prenotazione di {prenotazione?.utente?.nome + " " + prenotazione?.utente?.cognome}{" "}
                 </Card.Title>
                 <Card.Text className="mt-4">
                   <p>Arrivo: {prenotazione.arrivo}</p>
                   <p>Partenza: {prenotazione.partenza}</p>
                   <p>Prezzo: € {prenotazione.totalePrezzo}</p>
+                  {sonoAdmin && (
+                    <ListGroup>
+                      {prenotazione?.camere?.map((camera) => (
+                        <ListGroup.Item
+                          onClick={() => handleClickCamera(camera.id)}
+                          action
+                          variant="light"
+                          key={camera.id}
+                        >
+                          Numero Camera: {camera.numeroCamera}
+                        </ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  )}
                 </Card.Text>
                 <Button className="ms-3" variant="primary" onClick={handleModifica}>
                   Modifica

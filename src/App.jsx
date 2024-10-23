@@ -46,15 +46,15 @@ function App() {
         <Route path="/register" element={<Registrati />} />
         <Route path="/dashboard" element={<DashUtente />} />
         <Route path="/preventivi" element={<ListaPreventiviUtente />} />
+        <Route path="/gestione-preventivi" element={<GestionePreventivi />} />
         <Route path="/preventivi/:preventivoId" element={<DettagliPreventivo />} />
         <Route path="/prenotazioni" element={<ListaPrenotazioniUtente />} />
+        <Route path="/gestione-prenotazioni" element={<GestionePrenotazioni />} />
         <Route path="/prenotazioni/:prenotazioneId" element={<DettagliPrenotazione />} />
         <Route path="/richiesta-preventivo" element={<RichiediPreventivo />} />
         <Route path="/profilo" element={<MyProfile />} />
         <Route path="/gestione-utenti" element={<GestioneUtenti />} />
         <Route path="/utenti/:utenteId" element={<UtenteDettaglio />} />
-        <Route path="/gestione-preventivi" element={<GestionePreventivi />} />
-        <Route path="/gestione-prenotazioni" element={<GestionePrenotazioni />} />
         <Route path="/gestione-camere" element={<GestioneCamere />} />
 
         <Route path="*" element={<NotFound />} />
