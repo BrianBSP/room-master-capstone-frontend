@@ -17,6 +17,7 @@ import cercaPrenotazioniReducer from "../reducers/cercaPrenotazioniReducer";
 import prenotazioniAllReducer from "../reducers/prenotazioniAllReducer";
 import cameraDettaglioReducer from "../reducers/cameraDettaglioReducer";
 import camereAllReducer from "../reducers/camereAllReducer";
+import camereReducer from "../reducers/camereReducer";
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   prenotazioniAll: prenotazioniAllReducer,
   cameraDettaglio: cameraDettaglioReducer,
   camereAll: camereAllReducer,
+  camere: camereReducer,
 });
 
 const store = configureStore({

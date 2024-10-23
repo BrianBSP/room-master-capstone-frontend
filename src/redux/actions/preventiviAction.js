@@ -100,7 +100,7 @@ export const preventivoByIdAction = (preventivoId) => {
           payload: response,
         });
       } else {
-        throw new Error("Errore nella richiesta: " + resp.statusText);
+        throw new Error("Errore nella richiesta: ", resp.statusText);
       }
     } catch (error) {
       dispatch({

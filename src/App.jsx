@@ -24,6 +24,7 @@ import UtenteDettaglio from "./components/utente/UtenteDettaglio.jsx";
 import GestionePreventivi from "./components/gestionePreventivi/GestionePreventivi.jsx";
 import GestionePrenotazioni from "./components/gestionePrenotazioni/GestionePrenotazioni.jsx";
 import GestioneCamere from "./components/gestioneCamare/GestioneCamere.jsx";
+import DettagliCamera from "./components/dettagliCamera/DettagliCamera.jsx";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/gestione-utenti" element={<GestioneUtenti />} />
         <Route path="/utenti/:utenteId" element={<UtenteDettaglio />} />
         <Route path="/gestione-camere" element={<GestioneCamere />} />
+        <Route path="/camere/:cameraId" element={<DettagliCamera />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

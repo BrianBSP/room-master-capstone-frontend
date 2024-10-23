@@ -17,10 +17,10 @@ const DettagliPrenotazione = () => {
     dispatch(prenotazioniByIdAction(prenotazioneId));
   }, [dispatch, prenotazioneId]);
 
-  console.log(prenotazioneId);
+  /* console.log(prenotazioneId); */
 
   const { prenotazione, loading, error } = useSelector((state) => state.dettaglioPrenotazione);
-  console.log(prenotazione);
+  /*  console.log(prenotazione); */
 
   const handleIndietro = () => {
     if (sonoAdmin) {
@@ -36,11 +36,15 @@ const DettagliPrenotazione = () => {
 
   const handleEliminaPrenotazione = () => {
     dispatch(eliminaPrenotazioneAction(prenotazione.id));
-    navigate("/prenotazioni");
+    if (sonoAdmin) {
+      navigate("/gestione-prenotazioni");
+    } else {
+      navigate("/prenotazioni");
+    }
   };
 
-  const handleClickCamera = () => {
-    dispatch();
+  const handleClickCamera = (cameraId) => {
+    navigate(`/camere/${cameraId}`);
   };
   return (
     <Container className="dettaglio-preventivo-section">
