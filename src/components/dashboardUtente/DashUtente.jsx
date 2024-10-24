@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Card, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { hotelsAction, hotelSelezionatoAction } from "../../redux/actions/hotelsAction";
+import { HOTEL_SELEZIONATO, hotelsAction, hotelSelezionatoAction } from "../../redux/actions/hotelsAction";
 
 const DashUtente = () => {
   const autenticato = localStorage.getItem("accessToken");
@@ -17,18 +17,22 @@ const DashUtente = () => {
   console.log(hotelSelezionato);
 
   useEffect(() => {
-    dispatch(hotelsAction());
-  }, [dispatch]);
+    if (ruolo === "ADMIN") {
+      dispatch(hotelsAction());
+    }
+  }, [dispatch, ruolo]);
 
-  if (!autenticato) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!autenticato) {
+      navigate("/login");
+    }
+  }, [autenticato, navigate]);
 
   useEffect(() => {
     if (hotelSelStato) {
       dispatch(hotelSelezionatoAction(hotelSelStato));
     }
-  });
+  }, [dispatch, hotelSelStato]);
 
   if (ruolo === "ADMIN") {
     return (
@@ -44,10 +48,15 @@ const DashUtente = () => {
           ) : (
             <Form.Group>
               <Form.Label>Seleziona Hotel</Form.Label>
-              <Form.Select value={hotelSelStato} onChange={(e) => setHotelSelStato(e.target.value)}>
-                <option>- Seleziona l&rsquo;hotel -</option>
+              <Form.Select
+                disabled
+                value={hotelSelStato}
+                onChange={(e) => setHotelSelStato(e.target.value)}
+                onClick={() => dispatch({ type: HOTEL_SELEZIONATO, payload: hotelSelStato })}
+              >
+                {/*  <option>- Seleziona l&rsquo;hotel -</option> */}
                 {hotels.map((hotel) => (
-                  <option key={hotel.id} value={hotel.id}>
+                  <option key={hotel.id} value={hotelSelezionato}>
                     {hotel.nome}
                   </option>
                 ))}

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Container, Form, InputGroup, ListGroup, Modal } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { camereAllAction, creaCameraAction } from "../../redux/actions/camereAction";
+import { HOTEL_SELEZIONATO, hotelByIdAction } from "../../redux/actions/hotelsAction";
 
 const GestioneCamere = () => {
   const [numeroCamera, setNumeroCamera] = useState("");
@@ -50,12 +51,23 @@ const GestioneCamere = () => {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const { hotelSelezionato } = useSelector((state) => state.hotels);
+  console.log(hotelSelezionato);
+
   const handleCreaCamera = (e) => {
     e.preventDefault();
     const nuovaCamera = { numeroCamera, capienzaCamera, tipoCamera, statoCamera };
-    dispatch(creaCameraAction(nuovaCamera));
+    dispatch(creaCameraAction(nuovaCamera, hotelSelezionato));
     setShowModal(false);
   };
+
+  useEffect(() => {
+    dispatch(hotelByIdAction(hotelSelezionato));
+  }, [dispatch, hotelSelezionato]);
+
+  const { hotel } = useSelector((state) => state.hotelDettaglio);
+  const [hotelSelStato, setHotelSelStato] = useState("");
+  console.log(hotel);
 
   return (
     <Container className="gestione-utenti-section">
@@ -157,6 +169,17 @@ const GestioneCamere = () => {
                 </Form.Select>
               </Form.Group>
               {/* dovrei inserire l'hotel */}
+              <Form.Group>
+                <Form.Label>Seleziona Hotel</Form.Label>
+                <Form.Select
+                  disabled
+                  value={hotelSelStato}
+                  onChange={(e) => setHotelSelStato(e.target.value)}
+                  onClick={() => dispatch({ type: HOTEL_SELEZIONATO, payload: hotelSelStato })}
+                >
+                  <option value={hotel.id}>{hotel.nome}</option>
+                </Form.Select>
+              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>

@@ -33,7 +33,7 @@ export const uploadImageAction = (formData) => {
           type: UPLOAD_IMG_UTENTE,
           payload: response,
         });
-        JSON.parse(localStorage.setItem("utente", response.utente.avatar));
+        JSON.parse(localStorage.setItem("utente", response));
       } else {
         throw new Error("Errore nel caricamento dell'immagine");
       }

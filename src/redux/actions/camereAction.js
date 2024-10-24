@@ -137,7 +137,7 @@ export const eliminaCameraAction = (cameraId) => {
   };
 };
 
-export const creaCameraAction = (camera) => {
+export const creaCameraAction = (camera, hotelId) => {
   return async (dispatch) => {
     try {
       dispatch({ type: CREA_PREVENTIVO_RICHIESTA });
@@ -149,7 +149,7 @@ export const creaCameraAction = (camera) => {
         });
       }
 
-      let resp = await fetch("http://localhost:3001/camere", {
+      let resp = await fetch(`http://localhost:3001/camere/${hotelId}/crea`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
