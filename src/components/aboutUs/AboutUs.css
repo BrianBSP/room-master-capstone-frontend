@@ -16,13 +16,13 @@
 .myAboutUs h3 {
   font-size: 1.5rem;
   margin-top: 1rem;
-  /* color: #dddddd; */
+  color: #dddddd;
 }
 
 .myAboutUs p {
   font-size: 1rem;
   line-height: 1.6;
-  /* color: #dadada; */
+  color: #dadada;
 }
 
 .receptionImg {
