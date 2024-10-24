@@ -33,8 +33,8 @@
 
 **Frontend**:
 
-- [text](https://github.com/BrianBSP/room-master-capstone-frontend)
+- [GitHub](https://github.com/BrianBSP/room-master-capstone-frontend)
 
 **Backen**:
 
-- [text](https://github.com/BrianBSP/room-master-capstone-project)
+- [GitHub](https://github.com/BrianBSP/room-master-capstone-project)
