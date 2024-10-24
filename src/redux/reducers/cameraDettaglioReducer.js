@@ -1,4 +1,11 @@
-import { GET_CAMERA, GET_CAMERA_FALLITA, GET_CAMERA_RICHIESTA } from "../actions/camereAction";
+import {
+  CREA_CAMERA,
+  CREA_CAMERA_FALLITA,
+  CREA_CAMERA_RICHIESTA,
+  GET_CAMERA,
+  GET_CAMERA_FALLITA,
+  GET_CAMERA_RICHIESTA,
+} from "../actions/camereAction";
 
 const initialState = {
   camera: {},
@@ -21,6 +28,25 @@ const cameraDettaglioReducer = (state = initialState, action) => {
         loading: false,
       };
     case GET_CAMERA_FALLITA:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CREA_CAMERA_RICHIESTA:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    case CREA_CAMERA:
+      return {
+        ...state,
+        loading: false,
+        camera: action.payload,
+      };
+    case CREA_CAMERA_FALLITA:
       return {
         ...state,
         loading: false,

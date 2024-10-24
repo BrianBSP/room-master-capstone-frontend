@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { Button, Card, Container, Form, InputGroup, ListGroup } from "react-bootstrap";
+import { Button, Card, Container, Form, InputGroup, ListGroup, Modal } from "react-bootstrap";
 import { ArrowLeft, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { camereAllAction } from "../../redux/actions/camereAction";
+import { camereAllAction, creaCameraAction } from "../../redux/actions/camereAction";
 
 const GestioneCamere = () => {
+  const [numeroCamera, setNumeroCamera] = useState("");
+  const [capienzaCamera, setCapienzaCamera] = useState("");
+  const [tipoCamera, setTipoCamera] = useState("");
+  const [statoCamera, setStatoCamera] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,6 +45,16 @@ const GestioneCamere = () => {
 
   const handleClickCamera = (cameraId) => {
     navigate(`/camere/${cameraId}`);
+  };
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  const handleCreaCamera = (e) => {
+    e.preventDefault();
+    const nuovaCamera = { numeroCamera, capienzaCamera, tipoCamera, statoCamera };
+    dispatch(creaCameraAction(nuovaCamera));
+    setShowModal(false);
   };
 
   return (
@@ -79,10 +95,79 @@ const GestioneCamere = () => {
           </Card>
         </Link>
         <Link className="text-decoration-none">
-          <Card className="p-3" onClick={handleListaCamere}>
+          <Card className="p-3" onClick={handleShowModal}>
             <h5>Crea Nuova Camera</h5>
           </Card>
         </Link>
+        <Modal size="lg" show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Crea una Nuova Camera</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="numeroCamera">
+                <Form.Label>Numero della Camera:</Form.Label>
+                <Form.Control
+                  required
+                  value={numeroCamera}
+                  onChange={(e) => setNumeroCamera(e.target.value)}
+                  type="number"
+                  min={0}
+                  placeholder="Inserisci qui il numero della Camera..."
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="capienzaCamera">
+                <Form.Label>Capienza della Camera:</Form.Label>
+                <Form.Control
+                  required
+                  value={capienzaCamera}
+                  onChange={(e) => setCapienzaCamera(e.target.value)}
+                  type="number"
+                  min={0}
+                  placeholder="Inserisci qui la capienza della Camera..."
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Tipo di Camera</Form.Label>
+                <Form.Select
+                  required
+                  aria-label="Seleziona Tipo Camera"
+                  value={tipoCamera}
+                  onChange={(e) => setTipoCamera(e.target.value)}
+                >
+                  <option>- Seleziona il tipo di camera -</option>
+                  <option value="FAMILY_ROOM">Family Room</option>
+                  <option value="STANDARD">Standard</option>
+                  <option value="SUITE">Suite</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Stato della Camera</Form.Label>
+                <Form.Select
+                  required
+                  aria-label="Seleziona Stato Camera"
+                  value={statoCamera}
+                  onChange={(e) => setStatoCamera(e.target.value)}
+                >
+                  <option>- Seleziona lo stato della camera -</option>
+                  <option value="DISPONIBILE">Disponibile</option>
+                  <option value="OCCUPATA">Occupata</option>
+                  <option value="IN_PREPARAZIONE">In preparazione</option>
+                  <option value="FUORI_SERVIZIO">Fuori servizio</option>
+                </Form.Select>
+              </Form.Group>
+              {/* dovrei inserire l'hotel */}
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Chiudi
+            </Button>
+            <Button variant="primary" onClick={handleCreaCamera}>
+              Salva
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
       <Container>
         {camere && camere.length === 0 && !loading && <p className="text-center mt-5">Nessun preventivo trovato</p>}

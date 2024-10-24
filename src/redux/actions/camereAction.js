@@ -1,4 +1,5 @@
 import { LOGIN_FALLITO } from "./loginAction";
+import { CREA_PREVENTIVO_RICHIESTA } from "./preventiviAction";
 
 export const LISTA_ALL_CAMERE = "LISTA_ALL_CAMERE";
 export const LISTA_ALL_CAMERE_RICHIESTA = "LISTA_ALL_CAMERE_RICHIESTA";
@@ -11,6 +12,10 @@ export const GET_CAMERA_FALLITA = "GET_CAMERA_FALLITA";
 export const ELIMINA_CAMERA = "ELIMINA_CAMERA";
 export const ELIMINA_CAMERA_RICHIESTA = "ELIMINA_CAMERA_RICHIESTA";
 export const ELIMINA_CAMERA_FALLITO = "ELIMINA_CAMERA_FALLITO";
+
+export const CREA_CAMERA = "CREA_CAMERA";
+export const CREA_CAMERA_RICHIESTA = "CREA_CAMERA_RICHIESTA";
+export const CREA_CAMERA_FALLITA = "CREA_CAMERA_FALLITA";
 
 export const camereAllAction = (url = "http://localhost:3001/camere") => {
   return async (dispatch) => {
@@ -126,6 +131,46 @@ export const eliminaCameraAction = (cameraId) => {
       console.error("Error: ", error);
       dispatch({
         type: ELIMINA_CAMERA_FALLITO,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const creaCameraAction = (camera) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: CREA_PREVENTIVO_RICHIESTA });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch("http://localhost:3001/camere", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(camera),
+      });
+
+      if (resp.ok) {
+        let response = await resp.json();
+        dispatch({
+          type: CREA_CAMERA,
+          payload: response,
+        });
+      } else {
+        throw new Error("Error: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      dispatch({
+        type: CREA_CAMERA_FALLITA,
         payload: error.message,
       });
     }

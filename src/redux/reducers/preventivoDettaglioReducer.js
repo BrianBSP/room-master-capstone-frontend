@@ -38,6 +38,7 @@ const preventivoDettaglioReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        error: null,
       };
 
     case CREA_PREVENTIVO:

@@ -1,14 +1,34 @@
-import { Card, Container } from "react-bootstrap";
-import { Link, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Card, Container, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { hotelsAction, hotelSelezionatoAction } from "../../redux/actions/hotelsAction";
 
 const DashUtente = () => {
   const autenticato = localStorage.getItem("accessToken");
   const utente = JSON.parse(localStorage.getItem("utente"));
   const ruolo = utente.ruoloUtente;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { hotels, loading, error, hotelSelezionato } = useSelector((state) => state.hotels);
+  const [hotelSelStato, setHotelSelStato] = useState("");
+  console.log(hotels);
+  console.log(hotelSelezionato);
+
+  useEffect(() => {
+    dispatch(hotelsAction());
+  }, [dispatch]);
 
   if (!autenticato) {
-    return <Navigate to="/login" />;
+    navigate("/login");
   }
+
+  useEffect(() => {
+    if (hotelSelStato) {
+      dispatch(hotelSelezionatoAction(hotelSelStato));
+    }
+  });
 
   if (ruolo === "ADMIN") {
     return (
@@ -16,6 +36,25 @@ const DashUtente = () => {
         <div>
           <h2 className="bg-body-tertiary pb-3 rounded-3">Dashboard ADMIN</h2>
         </div>
+        <Container>
+          {loading ? (
+            <p>Caricamento hotel...</p>
+          ) : error ? (
+            <p className="text-danger">Errore: {error}</p>
+          ) : (
+            <Form.Group>
+              <Form.Label>Seleziona Hotel</Form.Label>
+              <Form.Select value={hotelSelStato} onChange={(e) => setHotelSelStato(e.target.value)}>
+                <option>- Seleziona l&rsquo;hotel -</option>
+                {hotels.map((hotel) => (
+                  <option key={hotel.id} value={hotel.id}>
+                    {hotel.nome}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          )}
+        </Container>
         <Container>
           <Link className="text-decoration-none" to="/gestione-utenti">
             <Card>

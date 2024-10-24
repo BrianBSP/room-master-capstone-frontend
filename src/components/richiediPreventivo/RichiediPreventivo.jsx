@@ -59,6 +59,7 @@ const RichiediPreventivo = () => {
               min={arrivo}
             />
           </Form.Group>
+
           <p className="mt-4">Seleziona il Tipo di Camera</p>
           <Form.Select
             aria-label="Seleziona Tipo Camera"
