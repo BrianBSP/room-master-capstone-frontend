@@ -83,7 +83,7 @@ const MyProfile = () => {
   return (
     <Container className="myProfile-section">
       <div>
-        <h2 className="bg-body-tertiary pb-3 rounded-3">PROFILO</h2>
+        <h2 className="bg-titoli pb-3 rounded-3">PROFILO</h2>
       </div>
       <div className="d-flex justify-content-between indietro-button">
         <Button variant="secondary" onClick={handleIndietro}>

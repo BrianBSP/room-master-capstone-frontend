@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <Container className="login-section">
-      <h2 className="bg-body-tertiary pb-3 rounded-3">Effettua il LOGIN</h2>
+      <h2 className="bg-titoli pb-3 rounded-3">Effettua il LOGIN</h2>
       <div className="indietro-button">
         <Button variant="secondary" onClick={handleIndietro}>
           <ArrowLeft /> Torna Indietro

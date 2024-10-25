@@ -17,6 +17,10 @@ export const CREA_CAMERA = "CREA_CAMERA";
 export const CREA_CAMERA_RICHIESTA = "CREA_CAMERA_RICHIESTA";
 export const CREA_CAMERA_FALLITA = "CREA_CAMERA_FALLITA";
 
+export const UPDATE_CAMERA = "UPDATE_CAMERA";
+export const UPDATE_CAMERA_RICHIESTA = "UPDATE_CAMERA_RICHIESTA";
+export const UPDATE_CAMERA_FALLITA = "UPDATE_CAMERA_FALLITA";
+
 export const camereAllAction = (url = "http://localhost:3001/camere") => {
   return async (dispatch) => {
     try {
@@ -171,6 +175,47 @@ export const creaCameraAction = (camera, hotelId) => {
       console.error("Error: ", error);
       dispatch({
         type: CREA_CAMERA_FALLITA,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const updateCameraAction = (camera) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: UPDATE_CAMERA_RICHIESTA });
+
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return dispatch({
+          type: LOGIN_FALLITO,
+          payload: "Utente non autenticato. Effettua il login.",
+        });
+      }
+
+      let resp = await fetch(`http://localhost:3001/camere/${camera.id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(camera),
+      });
+
+      if (resp.ok) {
+        const response = await resp.json();
+        dispatch({
+          type: UPDATE_CAMERA,
+          payload: response,
+        });
+      } else {
+        throw new Error("Errore: ", resp.statusText);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      dispatch({
+        type: UPDATE_CAMERA_FALLITA,
         payload: error.message,
       });
     }

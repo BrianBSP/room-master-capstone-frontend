@@ -72,7 +72,7 @@ const GestioneCamere = () => {
   return (
     <Container className="gestione-utenti-section">
       <div>
-        <h2 className="bg-body-tertiary pb-3 rounded-3">Gestione Camere</h2>
+        <h2 className="bg-titoli pb-3 rounded-3">Gestione Camere</h2>
       </div>
       <div className="d-flex justify-content-between">
         <div className="indietro-button">

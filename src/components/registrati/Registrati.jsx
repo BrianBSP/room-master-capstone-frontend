@@ -28,7 +28,7 @@ const Registrati = () => {
   return (
     <Container className="registra-section">
       <div>
-        <h2 className="bg-body-tertiary pb-3 rounded-3">Effettua la REGISTRAZIONE</h2>
+        <h2 className="bg-titoli pb-3 rounded-3">Effettua la REGISTRAZIONE</h2>
       </div>
       <div className="indietro-button">
         <Button variant="secondary" onClick={handleIndietro}>

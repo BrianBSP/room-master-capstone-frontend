@@ -4,7 +4,7 @@ const Contatti = () => {
   return (
     <Container className="contatti-section">
       <div>
-        <h1 className="bg-body-tertiary pb-3 rounded-3">Contatti</h1>
+        <h1 className="bg-titoli pb-3 rounded-3">Contatti</h1>
 
         <div className="contatti-azienda">
           <h2>Contatti dell&rsquo;Azienda</h2>

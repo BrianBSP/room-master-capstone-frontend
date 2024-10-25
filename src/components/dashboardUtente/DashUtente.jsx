@@ -38,7 +38,7 @@ const DashUtente = () => {
     return (
       <Container className="dash-section">
         <div>
-          <h2 className="bg-body-tertiary pb-3 rounded-3">Dashboard ADMIN</h2>
+          <h2 className="bg-titoli pb-3 rounded-3">Dashboard ADMIN</h2>
         </div>
         <Container>
           {loading ? (
@@ -46,7 +46,7 @@ const DashUtente = () => {
           ) : error ? (
             <p className="text-danger">Errore: {error}</p>
           ) : (
-            <Form.Group>
+            <Form.Group className="form-sel-hotel">
               <Form.Label>Seleziona Hotel</Form.Label>
               <Form.Select
                 disabled
@@ -64,24 +64,24 @@ const DashUtente = () => {
             </Form.Group>
           )}
         </Container>
-        <Container>
+        <Container className="dash-contain-admin">
           <Link className="text-decoration-none" to="/gestione-utenti">
-            <Card>
+            <Card className="card-dash-admin">
               <h4>Gestione Utenti</h4>
             </Card>
           </Link>
           <Link className="text-decoration-none" to="/gestione-preventivi">
-            <Card>
+            <Card className="card-dash-admin">
               <h4>Gestione Preventivi</h4>
             </Card>
           </Link>
           <Link className="text-decoration-none" to="/gestione-prenotazioni">
-            <Card>
+            <Card className="card-dash-admin">
               <h4>Gestione Prenotazioni</h4>
             </Card>
           </Link>
           <Link className="text-decoration-none" to="/gestione-camere">
-            <Card>
+            <Card className="card-dash-admin">
               <h4>Gestione Camere</h4>
             </Card>
           </Link>
@@ -91,7 +91,7 @@ const DashUtente = () => {
   }
   return (
     <Container className="dash-section">
-      <h2 className="bg-body-tertiary pb-3 rounded-3">La tua DASHBOARD</h2>
+      <h2 className="bg-titoli pb-3 rounded-3">La tua DASHBOARD</h2>
 
       <Container className="card-dash-section">
         <Link className="text-decoration-none" to="/preventivi">

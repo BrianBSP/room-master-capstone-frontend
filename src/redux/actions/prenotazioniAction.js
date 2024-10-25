@@ -259,7 +259,7 @@ export const getPrenotazioniAnnoAction = (anno) => {
       console.error("Error: ", error);
       dispatch({
         type: LISTA_ALL_PRENOTAZIONI_FALLITO,
-        payload: error.message,
+        payload: "Nessun preventivo in quest'anno selezionare un altro anno...",
       });
     }
   };

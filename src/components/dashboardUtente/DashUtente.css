@@ -4,7 +4,7 @@
 }
 
 .dash-section h2 {
-  color: rgb(42, 59, 83);
+  color: whitesmoke;
   padding-left: 1rem;
   padding-top: 1rem;
   margin-block: 2.5rem;
@@ -19,4 +19,30 @@
 
 .card-dash-section :link {
   color: rgb(42, 59, 83);
+}
+
+.bg-titoli {
+  background: #4a7587;
+  color: whitesmoke;
+}
+
+.card-dash-admin {
+  width: 500px;
+  height: 50px;
+  padding-inline-start: 20px;
+  padding-top: 8px;
+  margin: 20px;
+}
+
+.form-sel-hotel {
+  width: 350px;
+  margin-inline: auto;
+  margin-bottom: 100px;
+}
+
+.dash-contain-admin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
 }

@@ -1,17 +1,38 @@
+import { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 
 const MyNav = () => {
   const utente = JSON.parse(localStorage.getItem("utente"));
+
+  const [scrolla, setScrolla] = useState(false);
+
+  const handleScrolla = () => {
+    const scrollaTop = window.scrolly || document.documentElement.scrollTop;
+    if (scrollaTop > 100) {
+      setScrolla(true);
+    } else {
+      setScrolla(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrolla);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrolla);
+    };
+  });
+
   return (
-    <Navbar expand="lg" className="myNav">
+    <Navbar expand="lg" className={`myNav ${scrolla ? "myNav-scrolla" : ""}`}>
       <Container>
-        <img src="../public/rm3.svg" alt="logo" width={40} />
-        <Navbar.Brand href="/#home" className="text-white ms-2 titleNav">
+        <img src="../public/rm-logo.svg" alt="logo" width={40} />
+        <Navbar.Brand href="/#home" className="ms-2 titleNav">
           ROOM MASTER
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Container className="d-flex justify-content-between">
+          <Container className="d-flex justify-content-between nav-contain">
             <div className="d-flex align-items-center">
               <Nav.Link href="/#home">Home</Nav.Link>
               <Nav.Link href="/#about-contain" className="ms-4">
