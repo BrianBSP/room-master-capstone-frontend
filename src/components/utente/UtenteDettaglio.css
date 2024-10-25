@@ -9,6 +9,10 @@
   margin-bottom: 5px;
 }
 
+.indietro-button button {
+  background-color: #053c51;
+}
+
 .img-contain-utente {
   max-width: 300px;
 }

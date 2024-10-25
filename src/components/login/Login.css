@@ -4,7 +4,7 @@
 }
 
 .login-section h2 {
-  color: rgb(42, 59, 83);
+  color: whitesmoke;
   padding-left: 1rem;
   padding-top: 1rem;
   margin-block: 2.5rem;
@@ -25,4 +25,9 @@
   text-align: center;
   margin-top: 45px;
   font-size: 20px;
+}
+
+.bg-titoli {
+  background: #4a7587;
+  color: whitesmoke;
 }

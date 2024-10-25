@@ -20,9 +20,14 @@
   height: 400px;
 }
 .contatti-section h1 {
-  color: rgb(42, 59, 83);
+  color: whitesmoke;
   padding-left: 1rem;
   padding-top: 1rem;
   margin-block: 2.5rem;
   font-size: 50px;
+}
+
+.bg-titoli {
+  background: #4a7587;
+  color: whitesmoke;
 }

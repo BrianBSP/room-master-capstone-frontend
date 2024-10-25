@@ -60,7 +60,7 @@ const UtenteDettaglio = () => {
         ) : (
           <div className="prev-card-section">
             <div className="indietro-button">
-              <Button variant="secondary" onClick={handleIndietro}>
+              <Button onClick={handleIndietro}>
                 <ArrowLeft /> Torna Indietro
               </Button>
             </div>

@@ -32,7 +32,7 @@ const ListaPreventiviUtente = () => {
 
   return (
     <Container className="lista-preventivi-section">
-      <h2 className="bg-body-tertiary pb-3 rounded-3">I tuoi preventivi: </h2>
+      <h2 className="bg-titoli pb-3 rounded-3">I tuoi preventivi: </h2>
       <div className="list-section">
         {loading && <p>Caricamento in corso...</p>}
         {error && <p>{error}</p>}

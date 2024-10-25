@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <Container id="home" className="home-section">
-        <h1 className="bg-body-tertiary pb-3 rounded-3">
+        <h1 className="pb-3 rounded-3 bg-titoli">
           <span className="fs-1">Benvenuti in</span> <br />
           ROOM MASTER
         </h1>

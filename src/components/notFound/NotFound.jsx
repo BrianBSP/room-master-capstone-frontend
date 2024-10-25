@@ -1,10 +1,13 @@
 import { Card, Container } from "react-bootstrap";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+  const navigate = useNavigate();
   const autenticato = localStorage.getItem("accessToken");
   if (!autenticato) {
-    return <Navigate to="/" />;
+    navigate("/");
+  } else {
+    navigate("/dashboard");
   }
   return (
     <Container className="notFound-section">

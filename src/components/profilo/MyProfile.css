@@ -4,7 +4,7 @@
 }
 
 .myProfile-section h2 {
-  color: rgb(42, 59, 83);
+  color: whitesmoke;
   padding-left: 1rem;
   padding-top: 1rem;
   margin-block: 2.5rem;
@@ -23,4 +23,9 @@
 
 .img-contain-profilo img:hover {
   cursor: pointer;
+}
+
+.bg-titoli {
+  background: #4a7587;
+  color: whitesmoke;
 }

@@ -1,8 +1,13 @@
 .myAboutUs h2 {
-  color: rgb(42, 59, 83);
+  color: whitesmoke;
   padding-left: 1rem;
   padding-top: 1rem;
   margin-block: 2.5rem;
+}
+
+.bg-titoli {
+  background: #4a7587;
+  color: whitesmoke;
 }
 
 #about-contain {
@@ -16,13 +21,11 @@
 .myAboutUs h3 {
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: #dddddd;
 }
 
 .myAboutUs p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #dadada;
 }
 
 .receptionImg {

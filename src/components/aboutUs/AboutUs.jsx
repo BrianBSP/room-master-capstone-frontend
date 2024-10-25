@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 const AboutUs = () => {
   return (
     <Container id="about-contain" className="myAboutUs">
-      <h2 className="bg-body-tertiary pb-3 rounded-3">ABOUT US</h2>
+      <h2 className="pb-3 rounded-3 bg-titoli">ABOUT US</h2>
 
       <div className="d-flex align-items-center position-relative">
         <div className="me-4 parag-contain">
